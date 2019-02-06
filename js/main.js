@@ -1,10 +1,10 @@
 import { categories } from './constants'
-// import makeCategoryHTML from './components/category-list-item'
+import Catergory from './components/category'
 
-// const categoryList = document.getElementById('category-list')
+const categoryList = document.getElementById('category-list')
 
-// const categoriesHTML = categories.map(makeCategoryHTML)
+const categoriesHTML = categories.map(Catergory.markup)
 
-// categoriesHTML.splice(4, 0, '<div class="w-100 mt-4"></div>')
+categoriesHTML.splice(4, 0, '<div class="w-100 mt-4"></div>')
 
-// categoryList.innerHTML = categoriesHTML.join('')
+categoryList.innerHTML = categoriesHTML.join('')

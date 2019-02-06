@@ -19,9 +19,10 @@ function renderProperty(property) {
 
 class SearchResultItem extends BaseComponent {
   static markup(properties) {
+    console.log(properties)
     return `
-<a href="./program/" class="list-group-item list-group-item-action">
-  ${ properties.map(renderProperty).join('') }
+<a href="/program-detail.html?id=${properties.identifiers.find(({attribute}) => attribute == 'id').item}" class="list-group-item list-group-item-action">
+  ${ properties.listing.map(renderProperty).join('') }
 </a>
     `
   }

@@ -15,17 +15,57 @@ body {
   font-weight: bold;
 }
 
-.labelled-item[data-item=''] {
+.minimize .labelled-item[data-item=''],
+.minimize .hideable {
   display: none;
 }
 
-#search-result-container {
-  .labelled-for-agency-name,
-  .labelled-for-name,
-  .labelled-for-description
-  {
-    .labelled-item--label {
-      display: none;
-    }
-  }
+.labelled-item[data-item=''] {
+  color: #DDD;
+}
+
+.toggle {
+	float: right;
+	cursor: pointer;
+}
+
+.labelled-for-agency-name,
+.labelled-for-name,
+.labelled-for-description
+{
+	.labelled-item--label {
+	  display: none;
+	}
+}
+
+main {
+  min-height: 100vh;
+}
+
+.list-group h4:first-child {
+  margin-top: 20px;
+}
+
+#search-result-container,
+#search-filters {
+  margin-top: 50px;
+}
+
+#search-filters .card {
+	position: fixed;
+}
+
+#program-result-container {
+  margin-top: 100px;
+}
+
+footer {
+  margin-top: 50px;
+}
+
+.category svg {
+  fill: rgba(232, 70, 58, 0.75);
+  width: 40%;
+  display: block;
+  margin: 10px auto;
 }

@@ -1,1 +1,202 @@
-<!DOCTYPE html><html> <head> <title></title> <link href="//fonts.googleapis.com/css?family=Libre+Franklin:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i|Roboto+Slab:100,300,400,700" rel="stylesheet"> <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> <script type="text/javascript" src="/style.48316fa9.js"></script> </head> <body> <nav class="navbar fixed-top navbar-light bg-light"> <a class="navbar-brand h1" href="./">Houston Help Finder</a>     </nav> <main role="main"> <div class="container" id="search-result-container"> </div> <footer> The NeedHou Houston Social Services Database is a product of HILSC in partnership with January Advisors. </footer> </main> <script type="text/javascript" src="/search.14d6c9fa.js"></script> </body> </html>
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <link href="//fonts.googleapis.com/css?family=Libre+Franklin:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i|Roboto+Slab:100,300,400,700" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <script type="text/javascript" src="/style.f4fb0ab2.js"></script>
+<link rel="stylesheet" href="/style.f4fb0ab2.css"></head>
+<body>
+  <nav class="navbar fixed-top navbar-light bg-light">
+    <a class="navbar-brand h1" href="./">NeedHOU</a>
+  </nav>
+  <main role="main">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-8" id="search-result-container">
+        </div>
+        <div class="col" id="search-filters">
+
+
+
+          <div class="card">
+            <div class="card-body">
+            <div class="row">
+              <div class="col-md-12">
+                <h5><strong>Filter Results</strong></h5>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="Yes" id="Vetted-Referral" checked="">
+                    <label class="form-check-label" for="Vetted-Referral">
+                      A2S Verified 
+                    </label>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="Yes" id="Accepting-Clients">
+                    <label class="form-check-label" for="Accepting-Clients">
+                      Accepting Clients
+                    </label>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="Yes" id="ADA-Compliant">
+                    <label class="form-check-label" for="ADA-Compliant">
+                      ADA Compliant
+                    </label>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="Yes" id="Provides-Transportation">
+                    <label class="form-check-label" for="Provides-Transportation">
+                      Provides Transportation
+                    </label>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" value="Yes" id="Emergency-Referral">
+                    <label class="form-check-label" for="Emergency-Referral">
+                      Crisis Services Offered 
+                    </label>
+                  </div>
+                  
+                </div>
+                <hr>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <div class="form-group">
+                  <label for="keywords">Keywords</label>
+                  <input type="text" class="form-control" id="keywords" placeholder="">
+                </div>
+                <div class="form-group">
+                  <label for="address">Zip Code</label>
+                  <input type="text" class="form-control" id="address" placeholder="12345">
+                </div>
+                <div class="form-group">
+                  <label for="">Radius</label>
+                  <select class="form-control" id="radius">
+                    <option value="">Select a Distance</option>
+                    <option value="5">5 miles</option>
+                    <option value="10">10 miles</option>
+                    <option value="25">25 miles</option>
+                    <option value="50">50 miles</option>
+                    <option value="100">100 miles</option>
+                  </select>
+                </div>
+                <hr>
+                <div class="form-group">
+                  <label for="">Income Eligibility</label>
+                  <select class="form-control" id="income-eligibility">
+                    <option value="">Select an AMI</option>
+                    <option value="80">80%</option>
+                    <option value="110">110%</option>
+                    <option value="140">140%</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="immigration-status">Immigration Status</label>
+                  <select class="form-control" id="immigration-status">
+                    <option value="">Select an Immigration Status</option>
+                    <option value="0">US Citizen</option>
+                    <option value="1">Other</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="immigrant-accessibility">Immigrant Accessibility Profile</label>
+                  <select class="form-control" id="immigrant-accessibility">
+                    <option value="">Select an Immigrant Accessibility Profile</option>
+                    <option value="0">0+</option>
+                    <option value="1">1+</option>
+                    <option value="2">2+</option>
+                    <option value="3">3+</option>
+                    <option value="4">4+</option>
+                    <option value="5">5+</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="languages">Program/Service Languages</label>
+                  <select class="form-control" id="languages">
+                    <option value="">Select a Language</option>
+                    <option value="English">English</option>
+                    <option value="Spanish">Spanish</option>
+                    <option value="Vietnamese">Vietnamese</option>
+                    <option value="Chinese">Chinese</option>
+                    <option value="Arabic">Arabic</option>
+                    <option value="French">French</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+                <hr>
+
+          <div class="form-group">
+            <p>Open</p>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" value="Now" id="Now">
+              <label class="form-check-label" for="Now">
+                Now
+              </label>
+            </div>
+            <br>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" value="This-Date" id="This-Date">
+              <label class="form-check-label" for="This-Date">
+                Open At 
+                <input type="time" name="" class="" id="user-time"> 
+                <select class="" id="user-day">
+                  <option value="monday">Monday</option>
+                  <option value="tuesday">Tuesday</option>
+                  <option value="wednesday">Wednesday</option>
+                  <option value="thursday">Thursday</option>
+                  <option value="friday">Friday</option>
+                  <option value="saturday">Saturday</option>
+                  <option value="sunday">Sunday</option>
+                </select>
+              </label>
+            </div>
+          <br><br>
+          <div class="form-group">
+            <p style="margin-bottom: 0">Requires Appointment</p>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" value="Yes" id="Appointment-Yes">
+              <label class="form-check-label" for="Appointment-Yes">
+                Yes
+              </label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="checkbox" value="No" id="Appointment-No">
+              <label class="form-check-label" for="Appointment-No">
+                No
+              </label>
+            </div>
+          </div>
+          <hr>
+          <div class="form-group">
+            <button class="btn btn-primary mb-2" id="filter_button">Filter</button>
+          </div>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+      </div>
+
+    </div>
+  </div></main>
+  <footer class="container">
+    The NeedHou Houston Social Services Database is a product of HILSC in partnership with January Advisors.
+  </footer>
+  <script type="text/javascript" src="/search.a3177960.js"></script>
+</body>
+</html>

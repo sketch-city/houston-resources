@@ -46,6 +46,7 @@ const additionalTransforms = {
         return dataToViewData(key, index, phones[key])
       })
   },
+  last_updated: formatDateString,
   description: cleanStrings,
 }
 
@@ -92,7 +93,7 @@ function handleDataFromAPIToView(object) {
 }
 
 function dataToViewData(key, index, item) {
-  const { label = titleCase(key) } = attributeSettings[key] || {}
+  const { label = titleCase(key.split('_').join(' ')) } = attributeSettings[key] || {}
   const attribute = kebabCase(key)
 
   return {

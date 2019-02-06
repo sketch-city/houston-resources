@@ -5,7 +5,7 @@ class SearchResultList extends BaseComponent {
   static markup( properties ) {
     const { items } = properties
     return `
-<div class="list-group">
+<div class="list-group minimize">
     ${
       items
         .map(item => SearchResultItem.markup(item) )

@@ -17,7 +17,7 @@ data-item="${item}"
   <h4
     class="labelled-item--item"
     ${dataAttrs}
-  >${item}</h4>
+  ><strong>${item}</strong></h4>
 </div>
     `
   }

@@ -11,13 +11,19 @@
     <a class="navbar-brand h1" href="./">NeedHOU</a>
   </nav>
   <main role="main">
-    <div class="container" id="program-result-container">
+    <div class="container-fluid minimize">
+      <div class="col-8" id="program-result-container">
+      </div>
+      <div class="col" id="location">
 
-
+      </div>
     </div>
-    <footer>
-      The NeedHou Houston Social Services Database is a product of HILSC in partnership with January Advisors.
-    </footer>
   </main>
+  <footer class="container">
+    The NeedHou Houston Social Services Database is a product of HILSC in partnership with January Advisors.
+  </footer>
+  <script type="text/javascript" src="./js/program-detail.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDI2nDNT3z_DK6FUQhPyZ0z0ACaTXquTlw&callback=otherMap" async defer></script>
+
 </body>
 </html>

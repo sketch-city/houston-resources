@@ -141,11 +141,11 @@ var categories = [{
 exports.categories = categories;
 var attributeSettings = {
   agency_id: {
-    groups: []
+    groups: ['identifiers']
   },
   id: {
     label: 'Service ID',
-    groups: []
+    groups: ['identifiers']
   },
   name: {
     label: 'Service Name',
@@ -158,7 +158,7 @@ var attributeSettings = {
   },
   physical_address: {
     label: 'Address',
-    groups: ['summary', 'listing', 'contact']
+    groups: ['listing', 'contact']
   },
   ada: {
     label: 'ADA Compliant',
@@ -177,7 +177,8 @@ var attributeSettings = {
     groups: ['about']
   },
   service_type: {
-    groups: ['services-provided', 'icon']
+    groups: ['services-provided', 'icon'],
+    label: 'Service Type'
   },
   last_updated: {
     groups: ['details']
@@ -223,7 +224,7 @@ var attributeSettings = {
     groups: ['about']
   },
   other_eligibility: {
-    groups: ['elgibility'],
+    groups: ['eligibility'],
     order: [4]
   },
   id_accepted_notes: {
@@ -262,11 +263,11 @@ var attributeSettings = {
     groups: ['about', 'services-offered']
   },
   zipcode_eligibility: {
-    groups: ['elgibility'],
+    groups: ['eligibility'],
     order: [0]
   },
   age_eligibility: {
-    groups: ['elgibility'],
+    groups: ['eligibility'],
     order: [1]
   },
   id_accepted_current: {
@@ -295,14 +296,14 @@ var attributeSettings = {
     groups: ['policy']
   },
   income_eligibility: {
-    groups: ['elgibility'],
+    groups: ['eligibility'],
     order: [2]
   },
   id_accepted_expired: {
     groups: ['id-details', 'about']
   },
   gender_eligibility: {
-    groups: ['elgibility'],
+    groups: ['eligibility'],
     order: [3]
   },
   schedule: {
@@ -9144,6 +9145,7 @@ var additionalTransforms = {
       return dataToViewData(key, index, phones[key]);
     });
   },
+  last_updated: formatDateString,
   description: cleanStrings
 };
 
@@ -9186,7 +9188,7 @@ function handleDataFromAPIToView(object) {
 function dataToViewData(key, index, item) {
   var _ref2 = _constants.attributeSettings[key] || {},
       _ref2$label = _ref2.label,
-      label = _ref2$label === void 0 ? (0, _title_case.default)(key) : _ref2$label;
+      label = _ref2$label === void 0 ? (0, _title_case.default)(key.split('_').join(' ')) : _ref2$label;
 
   var attribute = (0, _kebab_case.default)(key);
   return {
@@ -9430,7 +9432,7 @@ function (_BaseComponent) {
           item = _ref.item,
           attribute = _ref.attribute;
       var dataAttrs = "\ndata-label=\"".concat(label, "\"\ndata-attribute=\"").concat(attribute, "\"\ndata-item=\"").concat(item, "\"\n    ");
-      return "\n<div\n  class=\"labelled-item labelled-for-".concat(attribute, "\"\n  ").concat(dataAttrs, ">\n  <span\n    class=\"labelled-item--label\"\n    ").concat(dataAttrs, "\n  >").concat(label, "</span>\n  <h4\n    class=\"labelled-item--item\"\n    ").concat(dataAttrs, "\n  >").concat(item, "</h4>\n</div>\n    ");
+      return "\n<div\n  class=\"labelled-item labelled-for-".concat(attribute, "\"\n  ").concat(dataAttrs, ">\n  <span\n    class=\"labelled-item--label\"\n    ").concat(dataAttrs, "\n  >").concat(label, "</span>\n  <h4\n    class=\"labelled-item--item\"\n    ").concat(dataAttrs, "\n  ><strong>").concat(item, "</strong></h4>\n</div>\n    ");
     }
   }]);
 
@@ -9487,7 +9489,7 @@ function (_BaseComponent) {
           item = _ref.item,
           attribute = _ref.attribute;
       var dataAttrs = "\ndata-label=\"".concat(label, "\"\ndata-attribute=\"").concat(attribute, "\"\ndata-item=\"").concat(item, "\"\n    ");
-      return "\n<div\n  class=\"labelled-item labelled-for-".concat(attribute, "\"\n  ").concat(dataAttrs, ">\n  <span\n    class=\"labelled-item--label\"\n    ").concat(dataAttrs, "\n  >").concat(label, "</span>\n  <h4\n    class=\"labelled-item--item\"\n    ").concat(dataAttrs, "\n  >").concat(item, "</h4>\n</div>\n    ");
+      return "\n<div\n  class=\"labelled-item labelled-for-".concat(attribute, "\"\n  ").concat(dataAttrs, ">\n  <span\n    class=\"labelled-item--label\"\n    ").concat(dataAttrs, "\n  >").concat(label, "</span>\n  <h6\n    class=\"labelled-item--item\"\n    ").concat(dataAttrs, "\n  ><strong>").concat(item, "</strong></h6>\n</div>\n    ");
     }
   }]);
 
@@ -9545,6 +9547,13 @@ function renderProperty(property) {
   return Component.markup(property);
 }
 
+function hasValues(data) {
+  return data.find(function (_ref) {
+    var item = _ref.item;
+    return item.length > 0;
+  }) ? true : false;
+}
+
 var ProgramDetail =
 /*#__PURE__*/
 function (_BaseComponent) {
@@ -9558,9 +9567,14 @@ function (_BaseComponent) {
 
   _createClass(ProgramDetail, null, [{
     key: "markup",
-    value: function markup(_ref) {
-      var data = _ref.data;
-      return "\n<div class=\"list-group\">\n  ".concat(data.summary.map(renderProperty).join(''), "\n</div>\n    ");
+    value: function markup(_ref2) {
+      var data = _ref2.data;
+
+      if (!data.summary) {
+        return "";
+      }
+
+      return "\n<small class=\"toggle\">Toggle Missing Data</small>\n<div class=\"list-group\">\n  ".concat(data.summary.map(renderProperty).join(''), "\n</div>\n<div class=\"list-group\">\n  <h4 class=\"").concat(hasValues(data['contact']) ? '' : 'hideable', "\">Contact Information</h4>\n  ").concat(data.contact.map(renderProperty).join(''), "\n</div>\n<div class=\"list-group\">\n  <h4 class=\"").concat(hasValues(data['services-provided']) ? '' : 'hideable', "\">Services Provided</h4>\n  ").concat(data['services-provided'].map(renderProperty).join(''), "\n</div>\n<div class=\"list-group\">\n  <h4 class=\"").concat(hasValues(data['services-offered']) ? '' : 'hideable', "\">Services Offered</h4>\n  ").concat(data['services-offered'].map(renderProperty).join(''), "\n</div>\n<div class=\"list-group\">\n  <h4 class=\"").concat(hasValues(data['eligibility']) ? '' : 'hideable', "\">Eligibility</h4>\n  ").concat(data['eligibility'].map(renderProperty).join(''), "\n</div>\n<div class=\"list-group \">\n  <h4 class=\"").concat(hasValues(data['requirements']) ? '' : 'hideable', "\">Requirements</h4>\n  ").concat(data['requirements'].map(renderProperty).join(''), "\n</div>\n<div class=\"list-group\">\n  <h4 class=\"").concat(hasValues(data['id-details']) ? '' : 'hideable', "\">Identification Details</h4>\n  ").concat(data['id-details'].map(renderProperty).join(''), "\n</div>\n<div class=\"list-group\">\n  <h4 class=\"").concat(hasValues(data['language-support']) ? '' : 'hideable', "\">Language Support</h4>\n  ").concat(data['language-support'].map(renderProperty).join(''), "\n</div>\n<div class=\"list-group\">\n  <h4 class=\"").concat(hasValues(data['service-intake-details']) ? '' : 'hideable', "\">Sevice Intake</h4>\n  ").concat(data['service-intake-details'].map(renderProperty).join(''), "\n</div>\n<div class=\"list-group\">\n  <h4 class=\"").concat(hasValues(data['policy']) ? '' : 'hideable', "\">Policy Information</h4>\n  ").concat(data['policy'].map(renderProperty).join(''), "\n</div>\n<div class=\"list-group\">\n  <h4>Schedule</h4>\n  ").concat(data['schedule'].map(renderProperty).join(''), "\n</div>\n<div class=\"list-group\">\n  <h4 class=\"hideable\">Additional Details</h4>\n  ").concat(data['about'].map(renderProperty).join(''), "\n</div>\n    ");
     }
   }]);
 
@@ -9587,10 +9601,20 @@ var programDetail = new _programDetail.default({
   data: {}
 }, programResultContainer);
 
-_axios.default.get("".concat(_constants.searchURL, "?id=AVepnktME939hynCFK2AWQAlaEc")).then(function (_ref) {
+_axios.default.get("".concat(_constants.searchURL).concat(location.search)).then(function (_ref) {
   var data = _ref.data;
+  window.data = (0, _utils.handleDataFromAPIToView)(data[0]);
   programDetail.update({
-    data: (0, _utils.handleDataFromAPIToView)(data)[0]
+    data: (0, _utils.handleDataFromAPIToView)(data[0])
+  });
+  document.addEventListener('click', function (clickEvent) {
+    if (clickEvent.target.innerText === 'Toggle Missing Data') {
+      if (programDetail.el.classList.contains('minimize')) {
+        programDetail.el.classList.remove('minimize');
+      } else {
+        programDetail.el.classList.add('minimize');
+      }
+    }
   });
 });
 },{"./constants":"js/constants.js","axios":"node_modules/axios/index.js","./utils":"js/utils.js","./components/program-detail":"js/components/program-detail.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
@@ -9620,7 +9644,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "35243" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "34451" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

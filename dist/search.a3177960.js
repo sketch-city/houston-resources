@@ -141,11 +141,11 @@ var categories = [{
 exports.categories = categories;
 var attributeSettings = {
   agency_id: {
-    groups: []
+    groups: ['identifiers']
   },
   id: {
     label: 'Service ID',
-    groups: []
+    groups: ['identifiers']
   },
   name: {
     label: 'Service Name',
@@ -158,7 +158,7 @@ var attributeSettings = {
   },
   physical_address: {
     label: 'Address',
-    groups: ['summary', 'listing', 'contact']
+    groups: ['listing', 'contact']
   },
   ada: {
     label: 'ADA Compliant',
@@ -177,7 +177,8 @@ var attributeSettings = {
     groups: ['about']
   },
   service_type: {
-    groups: ['services-provided', 'icon']
+    groups: ['services-provided', 'icon'],
+    label: 'Service Type'
   },
   last_updated: {
     groups: ['details']
@@ -223,7 +224,7 @@ var attributeSettings = {
     groups: ['about']
   },
   other_eligibility: {
-    groups: ['elgibility'],
+    groups: ['eligibility'],
     order: [4]
   },
   id_accepted_notes: {
@@ -262,11 +263,11 @@ var attributeSettings = {
     groups: ['about', 'services-offered']
   },
   zipcode_eligibility: {
-    groups: ['elgibility'],
+    groups: ['eligibility'],
     order: [0]
   },
   age_eligibility: {
-    groups: ['elgibility'],
+    groups: ['eligibility'],
     order: [1]
   },
   id_accepted_current: {
@@ -295,14 +296,14 @@ var attributeSettings = {
     groups: ['policy']
   },
   income_eligibility: {
-    groups: ['elgibility'],
+    groups: ['eligibility'],
     order: [2]
   },
   id_accepted_expired: {
     groups: ['id-details', 'about']
   },
   gender_eligibility: {
-    groups: ['elgibility'],
+    groups: ['eligibility'],
     order: [3]
   },
   schedule: {
@@ -9144,6 +9145,7 @@ var additionalTransforms = {
       return dataToViewData(key, index, phones[key]);
     });
   },
+  last_updated: formatDateString,
   description: cleanStrings
 };
 
@@ -9186,7 +9188,7 @@ function handleDataFromAPIToView(object) {
 function dataToViewData(key, index, item) {
   var _ref2 = _constants.attributeSettings[key] || {},
       _ref2$label = _ref2.label,
-      label = _ref2$label === void 0 ? (0, _title_case.default)(key) : _ref2$label;
+      label = _ref2$label === void 0 ? (0, _title_case.default)(key.split('_').join(' ')) : _ref2$label;
 
   var attribute = (0, _kebab_case.default)(key);
   return {
@@ -9430,7 +9432,7 @@ function (_BaseComponent) {
           item = _ref.item,
           attribute = _ref.attribute;
       var dataAttrs = "\ndata-label=\"".concat(label, "\"\ndata-attribute=\"").concat(attribute, "\"\ndata-item=\"").concat(item, "\"\n    ");
-      return "\n<div\n  class=\"labelled-item labelled-for-".concat(attribute, "\"\n  ").concat(dataAttrs, ">\n  <span\n    class=\"labelled-item--label\"\n    ").concat(dataAttrs, "\n  >").concat(label, "</span>\n  <h4\n    class=\"labelled-item--item\"\n    ").concat(dataAttrs, "\n  >").concat(item, "</h4>\n</div>\n    ");
+      return "\n<div\n  class=\"labelled-item labelled-for-".concat(attribute, "\"\n  ").concat(dataAttrs, ">\n  <span\n    class=\"labelled-item--label\"\n    ").concat(dataAttrs, "\n  >").concat(label, "</span>\n  <h4\n    class=\"labelled-item--item\"\n    ").concat(dataAttrs, "\n  ><strong>").concat(item, "</strong></h4>\n</div>\n    ");
     }
   }]);
 
@@ -9487,7 +9489,7 @@ function (_BaseComponent) {
           item = _ref.item,
           attribute = _ref.attribute;
       var dataAttrs = "\ndata-label=\"".concat(label, "\"\ndata-attribute=\"").concat(attribute, "\"\ndata-item=\"").concat(item, "\"\n    ");
-      return "\n<div\n  class=\"labelled-item labelled-for-".concat(attribute, "\"\n  ").concat(dataAttrs, ">\n  <span\n    class=\"labelled-item--label\"\n    ").concat(dataAttrs, "\n  >").concat(label, "</span>\n  <h4\n    class=\"labelled-item--item\"\n    ").concat(dataAttrs, "\n  >").concat(item, "</h4>\n</div>\n    ");
+      return "\n<div\n  class=\"labelled-item labelled-for-".concat(attribute, "\"\n  ").concat(dataAttrs, ">\n  <span\n    class=\"labelled-item--label\"\n    ").concat(dataAttrs, "\n  >").concat(label, "</span>\n  <h6\n    class=\"labelled-item--item\"\n    ").concat(dataAttrs, "\n  ><strong>").concat(item, "</strong></h6>\n</div>\n    ");
     }
   }]);
 
@@ -9559,7 +9561,11 @@ function (_BaseComponent) {
   _createClass(SearchResultItem, null, [{
     key: "markup",
     value: function markup(properties) {
-      return "\n<a href=\"./program/\" class=\"list-group-item list-group-item-action\">\n  ".concat(properties.map(renderProperty).join(''), "\n</a>\n    ");
+      console.log(properties);
+      return "\n<a href=\"/program-detail.html?id=".concat(properties.identifiers.find(function (_ref) {
+        var attribute = _ref.attribute;
+        return attribute == 'id';
+      }).item, "\" class=\"list-group-item list-group-item-action\">\n  ").concat(properties.listing.map(renderProperty).join(''), "\n</a>\n    ");
     }
   }]);
 
@@ -9615,7 +9621,7 @@ function (_BaseComponent) {
     key: "markup",
     value: function markup(properties) {
       var items = properties.items;
-      return "\n<div class=\"list-group\">\n    ".concat(items.map(function (item) {
+      return "\n<div class=\"list-group minimize\">\n    ".concat(items.map(function (item) {
         return _searchResultItem.default.markup(item);
       }).join(''), "\n</div>\n      ");
     }
@@ -9644,16 +9650,15 @@ var searchResultList = new _searchResultList.default({
   items: []
 }, searchResultContainer);
 
-_axios.default.get("".concat(_constants.searchURL, "?service_type=family")).then(function (_ref) {
+_axios.default.get("".concat(_constants.searchURL).concat(location.search)).then(function (_ref) {
   var data = _ref.data;
   var hello = data.map(_utils.handleDataFromAPIToView);
-  window.hello = hello;
-  var listings = hello.map(function (_ref2) {
-    var listing = _ref2.listing;
-    return listing;
-  });
+  window.hello = hello; // const listings = hello.map( ({ listing }) => {
+  //   listing
+  // } )
+
   searchResultList.update({
-    items: listings
+    items: hello
   });
 });
 },{"./constants":"js/constants.js","axios":"node_modules/axios/index.js","./utils":"js/utils.js","./components/search-result-list":"js/components/search-result-list.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
@@ -9683,7 +9688,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "41277" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "33523" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

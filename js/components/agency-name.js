@@ -14,10 +14,10 @@ data-item="${item}"
     class="labelled-item--label"
     ${dataAttrs}
   >${label}</span>
-  <h4
+  <h6
     class="labelled-item--item"
     ${dataAttrs}
-  >${item}</h4>
+  ><strong>${item}</strong></h6>
 </div>
     `
   }

@@ -37,11 +37,11 @@ export const categories = [
 
 export const attributeSettings = {
   agency_id: {
-    groups: [],
+    groups: ['identifiers'],
   },
   id: {
     label: 'Service ID',
-    groups: [],
+    groups: ['identifiers'],
   },
   name: {
     label: 'Service Name',
@@ -54,7 +54,7 @@ export const attributeSettings = {
   },
   physical_address: {
     label: 'Address',
-    groups: ['summary', 'listing', 'contact'],
+    groups: ['listing', 'contact'],
   },
   ada: {
     label: 'ADA Compliant',
@@ -74,6 +74,7 @@ export const attributeSettings = {
   },
   service_type: {
     groups: ['services-provided', 'icon'],
+    label: 'Service Type'
   },
   last_updated: {
     groups: ['details'],
@@ -119,7 +120,7 @@ export const attributeSettings = {
     groups: ['about'],
   },
   other_eligibility: {
-    groups: ['elgibility'],
+    groups: ['eligibility'],
     order: [4]
   },
   id_accepted_notes: {
@@ -158,11 +159,11 @@ export const attributeSettings = {
     groups: ['about', 'services-offered'],
   },
   zipcode_eligibility: {
-    groups: ['elgibility'],
+    groups: ['eligibility'],
     order: [0],
   },
   age_eligibility: {
-    groups: ['elgibility'],
+    groups: ['eligibility'],
     order: [1]
   },
   id_accepted_current: {
@@ -191,14 +192,14 @@ export const attributeSettings = {
     groups: ['policy'],
   },
   income_eligibility: {
-    groups: ['elgibility'],
+    groups: ['eligibility'],
     order: [2]
   },
   id_accepted_expired: {
     groups: ['id-details', 'about'],
   },
   gender_eligibility: {
-    groups: ['elgibility'],
+    groups: ['eligibility'],
     order: [3],
   },
   schedule: {

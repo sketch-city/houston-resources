@@ -17,11 +17,63 @@ function renderProperty(property) {
   return Component.markup(property)
 }
 
+function hasValues(data) {
+  return data.find(({item}) => item.length > 0)? true : false
+}
+
 class ProgramDetail extends BaseComponent {
   static markup({data}) {
+  	if (!data.summary) {
+  		return ``
+  	}
     return `
+<small class="toggle">Toggle Missing Data</small>
 <div class="list-group">
   ${ data.summary.map(renderProperty).join('') }
+</div>
+<div class="list-group">
+  <h4 class="${hasValues(data['contact'])? '':'hideable'}">Contact Information</h4>
+  ${ data.contact.map(renderProperty).join('') }
+</div>
+<div class="list-group">
+  <h4 class="${hasValues(data['services-provided'])? '':'hideable'}">Services Provided</h4>
+  ${ data['services-provided'].map(renderProperty).join('') }
+</div>
+<div class="list-group">
+  <h4 class="${hasValues(data['services-offered'])? '':'hideable'}">Services Offered</h4>
+  ${ data['services-offered'].map(renderProperty).join('') }
+</div>
+<div class="list-group">
+  <h4 class="${hasValues(data['eligibility'])? '':'hideable'}">Eligibility</h4>
+  ${ data['eligibility'].map(renderProperty).join('') }
+</div>
+<div class="list-group ">
+  <h4 class="${hasValues(data['requirements'])? '':'hideable'}">Requirements</h4>
+  ${ data['requirements'].map(renderProperty).join('') }
+</div>
+<div class="list-group">
+  <h4 class="${hasValues(data['id-details'])? '':'hideable'}">Identification Details</h4>
+  ${ data['id-details'].map(renderProperty).join('') }
+</div>
+<div class="list-group">
+  <h4 class="${hasValues(data['language-support'])? '':'hideable'}">Language Support</h4>
+  ${ data['language-support'].map(renderProperty).join('') }
+</div>
+<div class="list-group">
+  <h4 class="${hasValues(data['service-intake-details'])? '':'hideable'}">Sevice Intake</h4>
+  ${ data['service-intake-details'].map(renderProperty).join('') }
+</div>
+<div class="list-group">
+  <h4 class="${hasValues(data['policy'])? '':'hideable'}">Policy Information</h4>
+  ${ data['policy'].map(renderProperty).join('') }
+</div>
+<div class="list-group">
+  <h4>Schedule</h4>
+  ${ data['schedule'].map(renderProperty).join('') }
+</div>
+<div class="list-group">
+  <h4 class="hideable">Additional Details</h4>
+  ${ data['about'].map(renderProperty).join('') }
 </div>
     `
   }
