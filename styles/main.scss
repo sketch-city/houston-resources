@@ -1,0 +1,31 @@
+$font-family-sans-serif: 'Libre Franklin', sans-serif;
+$headings-font-family: 'Roboto Slab', serif;
+
+$hilsc-blue: #1571B6;
+$hilsc-gray: #4B4B4B;
+$hilsc-red:  #E8463A;
+
+@import "node_modules/bootstrap/scss/bootstrap";
+
+body {
+  margin-top: 64px;
+}
+
+.labelled-item--label {
+  font-weight: bold;
+}
+
+.labelled-item[data-item=''] {
+  display: none;
+}
+
+#search-result-container {
+  .labelled-for-agency-name,
+  .labelled-for-name,
+  .labelled-for-description
+  {
+    .labelled-item--label {
+      display: none;
+    }
+  }
+}
