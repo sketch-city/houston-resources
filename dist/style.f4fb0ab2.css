@@ -9512,7 +9512,7 @@ h3 {
   }
 }
 body {
-  margin-top: 64px;
+  margin-top: 56px;
 }
 
 .labelled-item--label {
@@ -9525,7 +9525,7 @@ body {
 }
 
 .labelled-item[data-item=""] {
-  color: #DDD;
+  color: #adb5bd;
 }
 
 .toggle {
@@ -9539,6 +9539,10 @@ body {
   display: none;
 }
 
+#search-result-container .minimize .labelled-item[data-item=""].labelled-for-accepting-clients {
+  display: block;
+}
+
 main {
   min-height: 100vh;
 }
@@ -9547,26 +9551,71 @@ main {
   margin-top: 20px;
 }
 
-#search-result-container,
-#search-filters {
-  margin-top: 50px;
-}
-
 #search-filters .card {
   position: fixed;
+  max-width: calc(100% / 3 - 50px);
 }
-
-#program-result-container {
-  margin-top: 100px;
+#search-filters .card .search-filters--filters {
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: calc(100vh - 240px);
 }
 
 footer {
   margin-top: 50px;
 }
 
+.category {
+  border-color: transparent;
+  background: #f8f9fa;
+}
 .category svg {
-  fill: rgba(232, 70, 58, 0.75);
-  width: 40%;
+  fill: rgba(232, 70, 58, 0.5);
+  width: 35%;
   display: block;
   margin: 10px auto;
+}
+.category:hover, .category:active, .category:focus {
+  outline: none;
+  text-decoration: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+.category:hover svg, .category:active svg, .category:focus svg {
+  fill: #e8463a;
+}
+
+.form-success {
+  border-color: #28a745;
+}
+.form-success:focus {
+  border-color: #28a745;
+  box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+}
+.form-success::placeholder {
+  color: #28a745;
+}
+
+.form-primary {
+  border-color: #007bff;
+}
+.form-primary:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+.form-primary::placeholder {
+  color: #007bff;
+}
+
+.navbar-brand {
+  font-weight: 800;
+  font-family: "Roboto Slab", serif;
+}
+.navbar-brand::before {
+  content: "NeedHOU";
+  color: #E8463A;
+  border-right: 2px dotted #E8463A;
+  padding-right: 8px;
+  margin-right: 8px;
+  font-weight: 400;
 }

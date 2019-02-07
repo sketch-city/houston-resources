@@ -9574,7 +9574,7 @@ function (_BaseComponent) {
         return "";
       }
 
-      return "\n<small class=\"toggle\">Toggle Missing Data</small>\n<div class=\"list-group\">\n  ".concat(data.summary.map(renderProperty).join(''), "\n</div>\n<div class=\"list-group\">\n  <h4 class=\"").concat(hasValues(data['contact']) ? '' : 'hideable', "\">Contact Information</h4>\n  ").concat(data.contact.map(renderProperty).join(''), "\n</div>\n<div class=\"list-group\">\n  <h4 class=\"").concat(hasValues(data['services-provided']) ? '' : 'hideable', "\">Services Provided</h4>\n  ").concat(data['services-provided'].map(renderProperty).join(''), "\n</div>\n<div class=\"list-group\">\n  <h4 class=\"").concat(hasValues(data['services-offered']) ? '' : 'hideable', "\">Services Offered</h4>\n  ").concat(data['services-offered'].map(renderProperty).join(''), "\n</div>\n<div class=\"list-group\">\n  <h4 class=\"").concat(hasValues(data['eligibility']) ? '' : 'hideable', "\">Eligibility</h4>\n  ").concat(data['eligibility'].map(renderProperty).join(''), "\n</div>\n<div class=\"list-group \">\n  <h4 class=\"").concat(hasValues(data['requirements']) ? '' : 'hideable', "\">Requirements</h4>\n  ").concat(data['requirements'].map(renderProperty).join(''), "\n</div>\n<div class=\"list-group\">\n  <h4 class=\"").concat(hasValues(data['id-details']) ? '' : 'hideable', "\">Identification Details</h4>\n  ").concat(data['id-details'].map(renderProperty).join(''), "\n</div>\n<div class=\"list-group\">\n  <h4 class=\"").concat(hasValues(data['language-support']) ? '' : 'hideable', "\">Language Support</h4>\n  ").concat(data['language-support'].map(renderProperty).join(''), "\n</div>\n<div class=\"list-group\">\n  <h4 class=\"").concat(hasValues(data['service-intake-details']) ? '' : 'hideable', "\">Sevice Intake</h4>\n  ").concat(data['service-intake-details'].map(renderProperty).join(''), "\n</div>\n<div class=\"list-group\">\n  <h4 class=\"").concat(hasValues(data['policy']) ? '' : 'hideable', "\">Policy Information</h4>\n  ").concat(data['policy'].map(renderProperty).join(''), "\n</div>\n<div class=\"list-group\">\n  <h4>Schedule</h4>\n  ").concat(data['schedule'].map(renderProperty).join(''), "\n</div>\n<div class=\"list-group\">\n  <h4 class=\"hideable\">Additional Details</h4>\n  ").concat(data['about'].map(renderProperty).join(''), "\n</div>\n    ");
+      return "\n<small class=\"toggle\">Toggle Missing Data</small>\n<div class=\"list-group\">\n  ".concat(data.summary.map(renderProperty).join(''), "\n</div>\n<div class=\"list-group\">\n  <h4 class=\"").concat(hasValues(data['contact']) ? '' : 'hideable', "\">Contact Information</h4>\n  ").concat(data.contact.map(renderProperty).join(''), "\n</div>\n<div class=\"list-group\">\n  <h4 class=\"").concat(hasValues(data['services-provided']) ? '' : 'hideable', "\">Services Provided</h4>\n  ").concat(data['services-provided'].map(renderProperty).join(''), "\n</div>\n<div class=\"list-group\">\n  <h4 class=\"").concat(hasValues(data['services-offered']) ? '' : 'hideable', "\">Services Offered</h4>\n  ").concat(data['services-offered'].map(renderProperty).join(''), "\n</div>\n<div class=\"list-group\">\n  <h4 class=\"").concat(hasValues(data['eligibility']) ? '' : 'hideable', "\">Eligibility</h4>\n  ").concat(data['eligibility'].map(renderProperty).join(''), "\n</div>\n<div class=\"list-group \">\n  <h4 class=\"").concat(hasValues(data['requirements']) ? '' : 'hideable', "\">Requirements</h4>\n  ").concat(data['requirements'].map(renderProperty).join(''), "\n</div>\n<div class=\"list-group\">\n  <h4 class=\"").concat(hasValues(data['id-details']) ? '' : 'hideable', "\">Identification Details</h4>\n  ").concat(data['id-details'].map(renderProperty).join(''), "\n</div>\n<div class=\"list-group\">\n  <h4 class=\"").concat(hasValues(data['language-support']) ? '' : 'hideable', "\">Language Support</h4>\n  ").concat(data['language-support'].map(renderProperty).join(''), "\n</div>\n<div class=\"list-group\">\n  <h4 class=\"").concat(hasValues(data['service-intake-details']) ? '' : 'hideable', "\">Sevice Intake</h4>\n  ").concat(data['service-intake-details'].map(renderProperty).join(''), "\n</div>\n<div class=\"list-group\">\n  <h4 class=\"").concat(hasValues(data['policy']) ? '' : 'hideable', "\">Policy Information</h4>\n  ").concat(data['policy'].map(renderProperty).join(''), "\n</div>\n<div class=\"list-group\">\n  <h4>Schedule</h4>\n  ").concat(data['schedule'].map(renderProperty).join(''), "\n</div>\n<div class=\"list-group\">\n  <h4>Additional Details</h4>\n  ").concat(data['about'].map(renderProperty).join(''), "\n</div>\n    ");
     }
   }]);
 
@@ -9616,7 +9616,9 @@ _axios.default.get("".concat(_constants.searchURL).concat(location.search)).then
       }
     }
   });
-});
+}); // function otherMap() {
+// }
+// window.otherMap = otherMap
 },{"./constants":"js/constants.js","axios":"node_modules/axios/index.js","./utils":"js/utils.js","./components/program-detail":"js/components/program-detail.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -9644,7 +9646,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "34451" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "36661" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

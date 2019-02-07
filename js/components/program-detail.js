@@ -4,11 +4,13 @@ import LabelledItem from './labelled-item'
 import AgencyPhone from './agency-phone'
 import Name from './name'
 import AgencyName from './agency-name'
+import LabelledInlineList from './labelled-inline-list'
 
 const customRenders = {
   'agency-phone': AgencyPhone,
   'name': Name,
   'agency-name': AgencyName,
+  'language-arr': LabelledInlineList,
 }
 
 function renderProperty(property) {
@@ -72,7 +74,7 @@ class ProgramDetail extends BaseComponent {
   ${ data['schedule'].map(renderProperty).join('') }
 </div>
 <div class="list-group">
-  <h4 class="hideable">Additional Details</h4>
+  <h4>Additional Details</h4>
   ${ data['about'].map(renderProperty).join('') }
 </div>
     `

@@ -3,7 +3,10 @@ import replaceAll from 'voca/replace_all'
 import kebabCase from 'voca/kebab_case'
 import titleCase from 'voca/title_case'
 
-import { attributeSettings } from './constants'
+import {
+  attributeSettings,
+  commonCities,
+} from './constants'
 
 const PHONE_REGEX = /(\+?( |-|\.)?\d{1,2}( |-|\.)?)?(\(?\d{3}\)?|\d{3})( |-|\.)?(\d{3}( |-|\.)?\d{4})/g
 
@@ -17,10 +20,10 @@ function getLabelAndPhone(string, index) {
     return {}
   }
 
-  const label = string.replace(phone[0], '').trim() || `Phone ${index + 1}`
+  const label = string.replace(phone[0], '').trim() || (index ? `Phone ${index + 1}` : `Main Phone`)
 
   return {
-    [label]: phone[0],
+    [titleCase(label)]: phone[0],
   }
 }
 
@@ -37,6 +40,17 @@ function formatDateString(string, stringFormat = 'MM/DD/YYYY') {
   return format(new Date(string), stringFormat)
 }
 
+const commonCitiesRegex = new RegExp(`(${commonCities.join('.*$|')}.*$){1}`)
+
+function isCityCrowded(address) {
+  const cityPos = address.search(commonCitiesRegex)
+  return address[cityPos - 1] !== ' '
+}
+
+function splitByCity(address) {
+  return address.split(commonCitiesRegex).join(' ')
+}
+
 const additionalTransforms = {
   agency_phone: (data) => {
     const phones = getPhonesFromString(data)
@@ -48,7 +62,46 @@ const additionalTransforms = {
   },
   last_updated: formatDateString,
   description: cleanStrings,
+  physical_address: (data) => ( (isCityCrowded(data) && splitByCity(data)) || data )
 }
+
+function groupSettings(settings = attributeSettings) {
+  let grouped = {}
+
+  Object.keys(settings)
+    .forEach((key, index) => {
+      const labelledSettings = labellizeSettings(key, index, settings)
+      const { groups, order = [] } = settings[key]
+
+      return groups.forEach((group, groupIndex) => {
+
+        const settingsCombined = Object.assign({
+          order: order[groupIndex] !== undefined ? order[groupIndex] : index,
+          groups: groups,
+        }, labelledSettings)
+
+        if (!grouped[group]) {
+          grouped[group] = []
+        }
+
+        grouped[group].push(settingsCombined)
+      })
+    })
+
+  Object.keys(grouped)
+    .forEach((key, index) => {
+      const settingsCombined = grouped[key]
+      settingsCombined.sort((item1, item2) => {
+        return item1.order - item2.order
+      })
+
+      grouped[key] = settingsCombined
+    })
+
+  return grouped
+}
+
+const groupedSettings = groupSettings()
 
 function handleDataFromAPIToView(object) {
   let transformedViewData = {}
@@ -67,9 +120,9 @@ function handleDataFromAPIToView(object) {
 
       return groups.forEach((group, groupIndex) => {
         const viewDataOrdered = Object.assign({
-          order: order[groupIndex] || index,
+          order: order[groupIndex] !== undefined ? order[groupIndex] : index,
+          groups: groups,
         }, viewData)
-
 
         if (!transformedViewData[group]) {
           transformedViewData[group] = []
@@ -92,9 +145,18 @@ function handleDataFromAPIToView(object) {
   return transformedViewData
 }
 
-function dataToViewData(key, index, item) {
-  const { label = titleCase(key.split('_').join(' ')) } = attributeSettings[key] || {}
+function labellizeSettings(key, index, settings = attributeSettings) {
+  const { label = titleCase(key.split('_').join(' ')) } = settings[key] || {}
   const attribute = kebabCase(key)
+
+  return {
+    label,
+    attribute,
+  }
+}
+
+function dataToViewData(key, index, item) {
+  const { label, attribute } = labellizeSettings(key, index, attributeSettings)
 
   return {
     attribute,

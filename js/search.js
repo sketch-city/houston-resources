@@ -10,10 +10,6 @@ const searchResultList = new SearchResultList({ items: [] }, searchResultContain
 
 axios.get(`${searchURL}${location.search}`)
   .then(({data}) => {
-    const hello = data.map(handleDataFromAPIToView)
-    window.hello = hello
-    // const listings = hello.map( ({ listing }) => {
-    //   listing
-    // } )
-    searchResultList.update({ items: hello })
+    const dataView = data.map(handleDataFromAPIToView)
+    searchResultList.update({ items: dataView })
   })

@@ -8,34 +8,46 @@ $hilsc-red:  #E8463A;
 @import "node_modules/bootstrap/scss/bootstrap";
 
 body {
-  margin-top: 64px;
+  margin-top: 56px;
 }
 
 .labelled-item--label {
   font-weight: bold;
 }
 
-.minimize .labelled-item[data-item=''],
-.minimize .hideable {
-  display: none;
+.minimize {
+  .labelled-item[data-item=''],
+  .hideable {
+    display: none;
+  }
 }
 
 .labelled-item[data-item=''] {
-  color: #DDD;
+  color: $gray-500;
 }
 
 .toggle {
-	float: right;
-	cursor: pointer;
+  float: right;
+  cursor: pointer;
 }
 
 .labelled-for-agency-name,
 .labelled-for-name,
 .labelled-for-description
 {
-	.labelled-item--label {
-	  display: none;
-	}
+  .labelled-item--label {
+    display: none;
+  }
+}
+
+#search-result-container {
+  .minimize {
+    .labelled-item[data-item=''] {
+      &.labelled-for-accepting-clients {
+        display: block;
+      }
+    }
+  }
 }
 
 main {
@@ -46,26 +58,88 @@ main {
   margin-top: 20px;
 }
 
-#search-result-container,
 #search-filters {
-  margin-top: 50px;
-}
 
-#search-filters .card {
-	position: fixed;
-}
+  .card {
+    position: fixed;
+    max-width: calc(100% / 3 - 50px);
 
-#program-result-container {
-  margin-top: 100px;
+    .search-filters--filters {
+      overflow-y: auto;
+      overflow-x: hidden;
+      max-height: calc(100vh - 240px);
+    }
+  }
 }
 
 footer {
   margin-top: 50px;
 }
 
-.category svg {
-  fill: rgba(232, 70, 58, 0.75);
-  width: 40%;
-  display: block;
-  margin: 10px auto;
+.category {
+
+  border-color: transparent;
+  background: $gray-100;
+
+  svg {
+    fill: rgba($hilsc-red, 0.5);
+    width: 35%;
+    display: block;
+    margin: 10px auto;
+  }
+
+  &:hover,
+  &:active,
+  &:focus {
+    outline: none;
+    text-decoration: none;
+    border-color: $blue; 
+    box-shadow: 0 0 0 $input-focus-width rgba($blue, .25);
+
+    svg {
+      fill: rgba($hilsc-red, 1);
+    }
+  }
+
+}
+
+.form-success {
+  border-color: $success;
+
+  &:focus {
+    border-color: $success;
+    box-shadow: 0 0 0 $input-focus-width rgba($success, .25);
+  }
+
+  &::placeholder {
+    color: $success;
+  }
+}
+
+.form-primary {
+  border-color: $primary;
+
+  &:focus {
+    border-color: $primary;
+    box-shadow: 0 0 0 $input-focus-width rgba($primary, .25);
+  }
+
+  &::placeholder {
+    color: $primary;
+  }
+}
+
+
+.navbar-brand {
+  font-weight: 800;
+  font-family: $headings-font-family;
+
+  &::before {
+    content: 'NeedHOU';
+    color: $hilsc-red;
+    border-right: 2px dotted $hilsc-red;
+    padding-right: 8px;
+    margin-right: 8px;
+    font-weight: 400;
+  }
 }

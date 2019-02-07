@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="/style.f4fb0ab2.css"></head>
 <body>
   <nav class="navbar fixed-top navbar-light bg-light">
-    <a class="navbar-brand h1" href="./">NeedHOU</a>
+    <a class="navbar-brand" href="/index.html">Resource Finder</a>
   </nav>
   <main role="main">
     <div class="jumbotron jumbotron-fluid">
@@ -17,17 +17,17 @@
         <p class="lead">Search through hundreds of agencies and programs that are ready to help you.</p>
         <form class="form-inline">
           <div class="input-group input-group-lg">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Find Help</button>
+            <input class="form-control form-success" type="search" placeholder="Search with keywords..." aria-label="Search">
+            <div class="input-group-append">
+              <button class="btn btn-success" type="submit">Find Help</button>
+            </div>
           </div>
         </form>
       </div>
     </div>
     <div class="container">
-      <h1>Find resources by category:</h1>
-      <div class="row" id="category-list">
-        
-      </div>
+      <h1>...or choose a category</h1>
+      <div class="row" id="category-list"></div>
     </div>
   </main>
   <footer class="container">

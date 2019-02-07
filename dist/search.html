@@ -4,64 +4,55 @@
   <title></title>
   <link href="//fonts.googleapis.com/css?family=Libre+Franklin:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i|Roboto+Slab:100,300,400,700" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <script type="text/javascript" src="/style.f4fb0ab2.js"></script>
-<link rel="stylesheet" href="/style.f4fb0ab2.css"></head>
+  <script type="text/javascript" src="/style-search.2c030c61.js"></script>
+<link rel="stylesheet" href="/style-search.2c030c61.css"></head>
 <body>
   <nav class="navbar fixed-top navbar-light bg-light">
-    <a class="navbar-brand h1" href="./">NeedHOU</a>
+    <a class="navbar-brand" href="/index.html">Resource Finder</a>
   </nav>
   <main role="main">
-    <div class="container-fluid">
+    <div class="container">
       <div class="row">
         <div class="col-8" id="search-result-container">
         </div>
         <div class="col" id="search-filters">
 
-
-
-          <div class="card">
+<div class="card">
             <div class="card-body">
             <div class="row">
               <div class="col-md-12">
-                <h5><strong>Filter Results</strong></h5>
+                <h5><strong>Filter</strong></h5>
               </div>
             </div>
+<div class="search-filters--filters">
             <div class="row">
               <div class="col-md-12">
                 <div class="form-group">
-                  <div class="form-check form-check-inline">
+                  <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="Yes" id="Vetted-Referral" checked="">
                     <label class="form-check-label" for="Vetted-Referral">
                       A2S Verified 
                     </label>
                   </div>
-                </div>
-                <div class="form-group">
-                  <div class="form-check form-check-inline">
+                  <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="Yes" id="Accepting-Clients">
                     <label class="form-check-label" for="Accepting-Clients">
                       Accepting Clients
                     </label>
                   </div>
-                </div>
-                <div class="form-group">
-                  <div class="form-check form-check-inline">
+                  <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="Yes" id="ADA-Compliant">
                     <label class="form-check-label" for="ADA-Compliant">
                       ADA Compliant
                     </label>
                   </div>
-                </div>
-                <div class="form-group">
-                  <div class="form-check form-check-inline">
+                  <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="Yes" id="Provides-Transportation">
                     <label class="form-check-label" for="Provides-Transportation">
                       Provides Transportation
                     </label>
                   </div>
-                </div>
-                <div class="form-group">
-                  <div class="form-check form-check-inline">
+                  <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="Yes" id="Emergency-Referral">
                     <label class="form-check-label" for="Emergency-Referral">
                       Crisis Services Offered 
@@ -140,19 +131,18 @@
 
           <div class="form-group">
             <p>Open</p>
-            <div class="form-check form-check-inline">
+            <div class="form-inline">
               <input class="form-check-input" type="checkbox" value="Now" id="Now">
               <label class="form-check-label" for="Now">
                 Now
               </label>
             </div>
-            <br>
-            <div class="form-check form-check-inline">
+            <div class="form-inline">
               <input class="form-check-input" type="checkbox" value="This-Date" id="This-Date">
               <label class="form-check-label" for="This-Date">
-                Open At 
-                <input type="time" name="" class="" id="user-time"> 
-                <select class="" id="user-day">
+                <span class="form-control-label mr-2">Open at</span>
+                <input type="time" name="" class="form-control" id="user-time">
+                <select class="form-control" id="user-day">
                   <option value="monday">Monday</option>
                   <option value="tuesday">Tuesday</option>
                   <option value="wednesday">Wednesday</option>
@@ -166,34 +156,35 @@
           <br><br>
           <div class="form-group">
             <p style="margin-bottom: 0">Requires Appointment</p>
-            <div class="form-check form-check-inline">
+            <div class="form-check">
               <input class="form-check-input" type="checkbox" value="Yes" id="Appointment-Yes">
               <label class="form-check-label" for="Appointment-Yes">
                 Yes
               </label>
             </div>
-            <div class="form-check form-check-inline">
+            <div class="form-check">
               <input class="form-check-input" type="checkbox" value="No" id="Appointment-No">
               <label class="form-check-label" for="Appointment-No">
                 No
               </label>
             </div>
           </div>
+</div></div></div></div>
           <hr>
-          <div class="form-group">
-            <button class="btn btn-primary mb-2" id="filter_button">Filter</button>
-          </div>
+          <button class="btn btn-primary" id="filter_button">Filter</button>
+
               </div>
             </div>
           </div>
-
-
         </div>
       </div>
-      </div>
 
-    </div>
-  </div></main>
+
+        
+      
+
+    
+  </main>
   <footer class="container">
     The NeedHou Houston Social Services Database is a product of HILSC in partnership with January Advisors.
   </footer>
