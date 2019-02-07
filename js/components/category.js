@@ -1,3 +1,4 @@
+import { buildURL } from '../utils'
 import BaseComponent from './base'
 
 class Category extends BaseComponent {
@@ -10,7 +11,7 @@ class Category extends BaseComponent {
   col-6 py-3
 ">
 <a
-  href="/search.html?service_type=${name.toLowerCase()}"
+  href="${buildURL('/search.html')}?service_type=${name.toLowerCase()}"
   class="card category"
   data-toggle="tooltip"
   title="${description}">

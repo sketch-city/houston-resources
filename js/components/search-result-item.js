@@ -1,3 +1,4 @@
+import { buildURL } from '../utils'
 import BaseComponent from './base'
 import LabelledItem from './labelled-item'
 
@@ -23,7 +24,7 @@ class SearchResultItem extends BaseComponent {
   static markup(properties) {
 
     return `
-<a href="/program.html?id=${properties.identifiers.find(({attribute}) => attribute == 'id').item}" class="list-group-item list-group-item-action">
+<a href="${buildURL('/program.html')}?id=${properties.identifiers.find(({attribute}) => attribute == 'id').item}" class="list-group-item list-group-item-action">
   ${ properties.listing.map(renderProperty).join('') }
 </a>
     `

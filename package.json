@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "parcel *.html",
-    "build": "parcel build *.html"
+    "build": "parcel build *.html --public-url /needhouwebsite-redesign/"
   },
   "author": "",
   "license": "ISC",

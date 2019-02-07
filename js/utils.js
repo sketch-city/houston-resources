@@ -196,6 +196,15 @@ function dataToViewData(key, index, item) {
   }
 }
 
+// kinda clunky, but it'll do for now
+const hostnameRegex = /^(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\-]*[a-zA-Z0-9])\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\-]*[A-Za-z0-9])$/
+function buildURL(pathnameWithHTML) {
+  if (location.host.search(hostnameRegex) === 0) {
+    return `/${location.pathname.split('/')[1]}/${pathnameWithHTML.replace('.html', '')}`
+  }
+  return pathnameWithHTML
+}
+
 export {
   cleanStrings,
   getLabelAndPhone,
@@ -203,4 +212,5 @@ export {
   formatDateString,
   dataToViewData,
   handleDataFromAPIToView,
+  buildURL,
 }
