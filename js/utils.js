@@ -200,7 +200,7 @@ function dataToViewData(key, index, item) {
 const hostnameRegex = /^(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\-]*[a-zA-Z0-9])\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\-]*[A-Za-z0-9])$/
 function buildURL(pathnameWithHTML) {
   if (location.host.search(hostnameRegex) === 0) {
-    return `/${location.pathname.split('/')[1]}/${pathnameWithHTML.replace('.html', '')}`
+    return `/${location.pathname.split('/')[1]}/${pathnameWithHTML.replace(/(^\/)/, '').replace('.html', '')}`
   }
   return pathnameWithHTML
 }
