@@ -5,6 +5,7 @@ class SearchResultList extends BaseComponent {
   static markup( properties ) {
     const { items } = properties
     return `
+<h1>${items.length} Results</h1>
 <div class="list-group minimize">
     ${
       items

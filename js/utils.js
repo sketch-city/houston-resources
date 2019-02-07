@@ -64,19 +64,48 @@ const additionalTransforms = {
   description: cleanStrings,
   physical_address: (data) => ( (isCityCrowded(data) && splitByCity(data)) || data )
 }
+// These next few functions are unfortunate...this can definitely be
+// reduced...
+function labellizeSettings(settings = attributeSettings) {
+  let labels = {}
+
+  Object.keys(settings)
+    .forEach((key, index) => {
+      let labelledSettings = labellizeSetting(key, index, settings)
+
+      const { groups, order = [] } = settings[key]
+
+      const groupsWithOrder = groups.reduce((result, group, groupIndex) => {
+        const itemOrder = order[groupIndex] !== undefined ? order[groupIndex] : index
+        return Object.assign({
+          [group]: itemOrder
+        }, result)
+
+      }, {})
+
+      labelledSettings.groups = groupsWithOrder
+
+      if (!labels[key]) {
+        labels[key] = labelledSettings
+      }
+    })
+  return labels
+}
+
+export const labellizedSettings = labellizeSettings()
 
 function groupSettings(settings = attributeSettings) {
   let grouped = {}
 
   Object.keys(settings)
     .forEach((key, index) => {
-      const labelledSettings = labellizeSettings(key, index, settings)
+      const labelledSettings = labellizedSettings[key]
       const { groups, order = [] } = settings[key]
 
       return groups.forEach((group, groupIndex) => {
 
         const settingsCombined = Object.assign({
-          order: order[groupIndex] !== undefined ? order[groupIndex] : index,
+          order: labellizedSettings[key].groups[group],
           groups: groups,
         }, labelledSettings)
 
@@ -101,7 +130,7 @@ function groupSettings(settings = attributeSettings) {
   return grouped
 }
 
-const groupedSettings = groupSettings()
+export const groupedSettings = groupSettings()
 
 function handleDataFromAPIToView(object) {
   let transformedViewData = {}
@@ -114,13 +143,15 @@ function handleDataFromAPIToView(object) {
         item = additionalTransforms[key](item)
       }
 
-      const viewData = dataToViewData(key, index, item)
+      const { attribute, label } = labellizedSettings[key]
+
+      const viewData = { attribute, label, item }
 
       const { groups, order = [] } = attributeSettings[key]
 
       return groups.forEach((group, groupIndex) => {
         const viewDataOrdered = Object.assign({
-          order: order[groupIndex] !== undefined ? order[groupIndex] : index,
+          order: labellizedSettings[key].groups[group],
           groups: groups,
         }, viewData)
 
@@ -145,7 +176,7 @@ function handleDataFromAPIToView(object) {
   return transformedViewData
 }
 
-function labellizeSettings(key, index, settings = attributeSettings) {
+function labellizeSetting(key, index, settings = attributeSettings) {
   const { label = titleCase(key.split('_').join(' ')) } = settings[key] || {}
   const attribute = kebabCase(key)
 
@@ -156,7 +187,7 @@ function labellizeSettings(key, index, settings = attributeSettings) {
 }
 
 function dataToViewData(key, index, item) {
-  const { label, attribute } = labellizeSettings(key, index, attributeSettings)
+  const { label, attribute } = labellizeSetting(key, index, attributeSettings)
 
   return {
     attribute,

@@ -58,8 +58,7 @@ main {
   margin-top: 20px;
 }
 
-#search-filters {
-
+#search-filters-container {
   .card {
     position: fixed;
     max-width: calc(100% / 3 - 50px);
@@ -69,6 +68,10 @@ main {
       overflow-x: hidden;
       max-height: calc(100vh - 240px);
     }
+  }
+
+  .form-group p:first-child {
+    margin-bottom: 0;
   }
 }
 
