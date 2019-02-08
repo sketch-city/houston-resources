@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+git merge master --no-edit
+npm run build
+git add ./dists/
+git commit -m "update dist for deploy"
+git subtree push --prefix dist origin gh-pages
