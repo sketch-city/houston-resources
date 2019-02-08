@@ -50,7 +50,7 @@ function initMap() {
   window.mapped = true
   const houston = { lat: 29.76, lng: -95.37 }
   const map = new google.maps.Map(
-      document.getElementById('map'), {zoom: 13, center: houston})
+      document.getElementById('map'), {zoom: 10, center: houston})
 
   return map
 }

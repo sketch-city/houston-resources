@@ -5,11 +5,12 @@ class LabelledItem extends BaseComponent {
   static renderItem(item) {
     return (!isEmpty(item) && item) || `n/a`
   }
-  static markup({ label, item, attribute }) {
+  static markup({ label, item, attribute, groups }) {
     const dataAttrs = `
 data-label="${label}"
 data-attribute="${attribute}"
 data-item="${item}"
+data-groups="${(groups || []).join(', ')}"
     `
 
     return `

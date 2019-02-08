@@ -6,6 +6,8 @@ import Name from './name'
 import AgencyName from './agency-name'
 import LabelledInlineList from './labelled-inline-list'
 
+import isEmpty from 'lodash/isEmpty'
+
 const customRenders = {
   'agency-phone': AgencyPhone,
   'name': Name,
@@ -20,10 +22,37 @@ function renderProperty(property) {
 }
 
 function hasValues(data) {
-  return data.find(({item}) => item.length > 0)? true : false
+  return data.find(({item}) => !(isEmpty(item)))? true : false
 }
 
+function countGroupCompleteness(data, groupName = 'immigrant-accessibility') {
+  return data.filter(({item}) => !(isEmpty(item))).length
+}
+
+
 class ProgramDetail extends BaseComponent {
+  static completenessMarkup({data}) {
+    const options = [
+      'Unknown',
+      'Partial',
+      'Complete',
+    ]
+
+    const count = countGroupCompleteness(data['immigrant-accessibility'])
+
+    const threshholdForCompleteness = 15
+    const completeness = ((count === 0) && 'Unknown') || ((count > threshholdForCompleteness) && 'Complete') || 'Partial'
+
+    const immigrantAccessibilityCompleteness = {
+      attribute: 'immigrant-accessiblity-completeness',
+      label: 'Immigrant Accessibility Completeness',
+      item: completeness,
+    }
+
+    return `
+${renderProperty(immigrantAccessibilityCompleteness)}
+    `
+  }
   static detailsMarkup({data}) {
     return `
 <div class="custom-control custom-switch">
@@ -32,6 +61,7 @@ class ProgramDetail extends BaseComponent {
 </div>
 <div class="list-group">
   ${ data.summary.map(renderProperty).join('') }
+  ${this.completenessMarkup({data})}
 </div>
 <div class="list-group">
   <h4 class="${hasValues(data['eligibility'])? '':'hideable'}">Eligibility</h4>

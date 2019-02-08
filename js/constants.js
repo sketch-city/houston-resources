@@ -178,7 +178,7 @@ export const attributeSettings = {
     order: [4],
   },
   other_eligibility: {
-    groups: ['eligibility'],
+    groups: ['eligibility', 'immigrant-accessibility'],
     order: [5]
   },
   id_accepted_notes: {
@@ -188,16 +188,16 @@ export const attributeSettings = {
   },
   proof_address: {
     label: 'Proof of Address',
-    groups: ['requirements'],
+    groups: ['requirements', 'immigrant-accessibility'],
     order: [0],
   },
   appointment_required_notes: {
-    groups: ['requirements'],
+    groups: ['requirements', 'immigrant-accessibility'],
     label: ['Appointment notes'],
     order: [2],
   },
   service_available_intake: {
-    groups: ['service-intake-details'],
+    groups: ['service-intake-details', 'immigrant-accessibility'],
     label: 'Are services available the same day as intake?',
     order: [0],
   },
@@ -210,27 +210,27 @@ export const attributeSettings = {
     groups: ['schedule'],
   },
   document_assistance: {
-    groups: ['services-and-policies'],
+    groups: ['services-and-policies', 'immigrant-accessibility'],
     label: 'Assistance with forms offered',
     order: [0],
   },
   visual_aids_offered: {
-    groups: ['services-and-policies'],
+    groups: ['services-and-policies', 'immigrant-accessibility'],
     label: 'Visual aids offered for low-literacy clients?',
     order: [1],
   },
   consultation_opportunity: {
-    groups: ['services-and-policies'],
+    groups: ['services-and-policies', 'immigrant-accessibility'],
     label: 'Offers consultation before paperwork',
     order: [3],
   },
   enforcement_request_policy: {
-    groups: ['services-and-policies'],
+    groups: ['services-and-policies', 'immigrant-accessibility'],
     label: 'Has policy to respond to Immigration and Customs Enforcement requests?',
     order: [4],
   },
   cultural_competency_offered: {
-    groups: ['services-and-policies'],
+    groups: ['services-and-policies', 'immigrant-accessibility'],
     label: 'Cultural competence trained',
     order: [5],
   },
@@ -250,15 +250,15 @@ export const attributeSettings = {
     order: [0],
   },
   website_languages: {
-    groups: ['language-support'],
+    groups: ['language-support', 'immigrant-accessibility'],
     label: 'Website',
   },
   frontline_languages: {
-    groups: ['language-support'],
+    groups: ['language-support', 'immigrant-accessibility'],
     label: 'Frontline',
   },
   interpretation_offered: {
-    groups: ['language-support'],
+    groups: ['language-support', 'immigrant-accessibility'],
     label: 'Interpretation',
   },
   crisis_services_offered: {
@@ -266,11 +266,11 @@ export const attributeSettings = {
     order: [4, 4],
   },
   document_languages: {
-    groups: ['language-support'],
+    groups: ['language-support', 'immigrant-accessibility'],
     label: 'Document',
   },
   immigration_status: {
-    groups: ['eligibility'],
+    groups: ['eligibility', 'immigrant-accessibility'],
     order: [6],
   },
   income_eligibility: {
@@ -289,7 +289,7 @@ export const attributeSettings = {
     label: 'Eligible Gender',
   },
   schedule: {
-    groups: ['schedule'],
+    groups: ['schedule', 'immigrant-accessibility'],
     label: ['Program/Service Hours'],
   },
   service_cost: {
@@ -309,12 +309,12 @@ export const attributeSettings = {
     groups: [],
   },
   agency_phone: {
-    groups: ['listing', 'contact'],
+    groups: ['listing', 'contact', 'immigrant-accessibility'],
     label: 'Phone Numbers',
     order: [5]
   },
   language_arr: {
-    groups: ['listing', 'summary', 'language-support'],
+    groups: ['listing', 'summary', 'language-support', 'immigrant-accessibility'],
     label: ['Languages Spoken', 'Program Languages Spoken', 'Program'],
     order: [4, 7, 0]
   },

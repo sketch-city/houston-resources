@@ -164,3 +164,23 @@ label {
   height: 400px;
   width: 100%;
 }
+
+[data-item=Partial] .labelled-item--item {
+  color: $yellow;
+  font-weight: 800;
+}
+
+[data-item=Unknown] .labelled-item--item {
+  color: $gray-600;
+  font-weight: 800;
+}
+
+[data-item=Complete] .labelled-item--item {
+  color: $success;
+  font-weight: 800;
+}
+
+[data-groups~=immigrant-accessibility]::before  {
+  content: '*';
+  margin-left: -10px;
+}
