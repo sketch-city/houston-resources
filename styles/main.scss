@@ -180,7 +180,7 @@ label {
   font-weight: 800;
 }
 
-[data-groups~=immigrant-accessibility]::before  {
+#program-result-container [data-groups~=immigrant-accessibility]::before  {
   content: '*';
   margin-left: -10px;
 }
