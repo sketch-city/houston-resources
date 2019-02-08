@@ -39,9 +39,6 @@ class SearchResultList extends BaseComponent {
 </div>
       `
   }
-  // update() {
-
-  // }
 }
 
 export default SearchResultList

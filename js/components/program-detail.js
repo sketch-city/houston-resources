@@ -29,13 +29,36 @@ class ProgramDetail extends BaseComponent {
   		return ``
   	}
     return `
-<small class="toggle">Toggle Missing Data</small>
+<div class="custom-control custom-switch">
+  <input type="checkbox" class="custom-control-input" id="toggle-missing">
+  <label class="custom-control-label float-right" for="toggle-missing">Show Missing Data</label>
+</div>
 <div class="list-group">
   ${ data.summary.map(renderProperty).join('') }
 </div>
 <div class="list-group">
+  <h4 class="${hasValues(data['eligibility'])? '':'hideable'}">Eligibility</h4>
+  ${ data['eligibility'].map(renderProperty).join('') }
+</div>
+<div class="list-group">
+  <h4 class="${hasValues(data['id-details'])? '':'hideable'}">Identification Details</h4>
+  ${ data['id-details'].map(renderProperty).join('') }
+</div>
+<div class="list-group ">
+  <h4 class="${hasValues(data['requirements'])? '':'hideable'}">Requirements</h4>
+  ${ data['requirements'].map(renderProperty).join('') }
+</div>
+<div class="list-group">
+  <h4 class="${hasValues(data['service-intake-details'])? '':'hideable'}">Sevice Intake</h4>
+  ${ data['service-intake-details'].map(renderProperty).join('') }
+</div>
+<div class="list-group">
   <h4 class="${hasValues(data['contact'])? '':'hideable'}">Contact Information</h4>
   ${ data.contact.map(renderProperty).join('') }
+</div>
+<div class="list-group">
+  <h4 class="${hasValues(data['language-support'])? '':'hideable'}">Language Support</h4>
+  ${ data['language-support'].map(renderProperty).join('') }
 </div>
 <div class="list-group">
   <h4 class="${hasValues(data['services-provided'])? '':'hideable'}">Services Provided</h4>
@@ -46,36 +69,12 @@ class ProgramDetail extends BaseComponent {
   ${ data['services-offered'].map(renderProperty).join('') }
 </div>
 <div class="list-group">
-  <h4 class="${hasValues(data['eligibility'])? '':'hideable'}">Eligibility</h4>
-  ${ data['eligibility'].map(renderProperty).join('') }
-</div>
-<div class="list-group ">
-  <h4 class="${hasValues(data['requirements'])? '':'hideable'}">Requirements</h4>
-  ${ data['requirements'].map(renderProperty).join('') }
-</div>
-<div class="list-group">
-  <h4 class="${hasValues(data['id-details'])? '':'hideable'}">Identification Details</h4>
-  ${ data['id-details'].map(renderProperty).join('') }
-</div>
-<div class="list-group">
-  <h4 class="${hasValues(data['language-support'])? '':'hideable'}">Language Support</h4>
-  ${ data['language-support'].map(renderProperty).join('') }
-</div>
-<div class="list-group">
-  <h4 class="${hasValues(data['service-intake-details'])? '':'hideable'}">Sevice Intake</h4>
-  ${ data['service-intake-details'].map(renderProperty).join('') }
-</div>
-<div class="list-group">
-  <h4 class="${hasValues(data['policy'])? '':'hideable'}">Policy Information</h4>
-  ${ data['policy'].map(renderProperty).join('') }
-</div>
-<div class="list-group">
   <h4>Schedule</h4>
   ${ data['schedule'].map(renderProperty).join('') }
 </div>
 <div class="list-group">
-  <h4>Additional Details</h4>
-  ${ data['about'].map(renderProperty).join('') }
+  <h4 class="${hasValues(data['services-and-policies'])? '':'hideable'}">Additional Services and Policies</h4>
+  ${ data['services-and-policies'].map(renderProperty).join('') }
 </div>
     `
   }

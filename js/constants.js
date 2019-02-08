@@ -93,7 +93,8 @@ export const attributeSettings = {
   },
   description: {
     groups: ['summary', 'listing'],
-    order: [2, 2],
+    order: [2, 3],
+    label: 'Program Description',
   },
   physical_address: {
     label: 'Address',
@@ -101,21 +102,24 @@ export const attributeSettings = {
     order: [6, 6]
   },
   ada: {
-    label: 'ADA Compliant',
-    groups: ['about', 'services-provided', 'service-checks'],
-    order: [0, 0, 2]
+    label: 'ADA accessible?',
+    groups: ['services-and-policies', 'service-checks'],
+    order: [2, 2]
   },
   application_process: {
     groups: ['about'],
   },
   documents_required: {
-    groups: ['requirements', 'about'],
+    groups: ['requirements'],
+    order: [3],
   },
   fee_structure: {
     groups: ['about'],
   },
   coverage_area: {
-    groups: ['about'],
+    groups: ['summary'],
+    order: [2],
+    label: 'Program Neighborhood/Area',
   },
   service_type: {
     groups: ['services-provided', 'icon', 'service-type'],
@@ -129,15 +133,17 @@ export const attributeSettings = {
   },
   website: {
     groups: ['contact'],
-    label: 'Learn more about the service',
+    label: 'Program webpage',
   },
   appointment_required: {
-    groups: ['requirements', 'about'],
-    order: [1, 1],
+    groups: ['requirements'],
+    order: [1],
+    label: 'Appointment required?',
   },
   accepting_clients: {
     groups: ['summary', 'listing', 'service-checks'],
-    order: [0, 3, 1],
+    order: [4, 3, 1],
+    label: 'Accepting clients?',
   },
   transportation: {
     label: 'Provides Transportation',
@@ -158,62 +164,90 @@ export const attributeSettings = {
   },
   next_steps: {
     groups: ['summary'],
+    order: [6],
+    label: 'Next steps for client to take',
   },
   waitlist_wait: {
-    groups: ['about'],
+    groups: ['summary'],
+    order: [5],
+    label: 'Waitlist wait days',
   },
   other_program_enrollment: {
-    groups: ['about'],
+    groups: ['eligibility'],
+    label: 'Requires Enrollment In',
+    order: [4],
   },
   other_eligibility: {
     groups: ['eligibility'],
-    order: [4]
+    order: [5]
   },
   id_accepted_notes: {
-    groups: ['id-details', 'about'],
+    groups: ['id-details'],
     order: [2],
+    label: 'Notes about accepted IDs',
   },
   proof_address: {
     label: 'Proof of Address',
-    groups: ['requirements', 'about'],
+    groups: ['requirements'],
+    order: [0],
   },
   appointment_required_notes: {
-    groups: ['requirements', 'about'],
+    groups: ['requirements'],
+    label: ['Appointment notes'],
+    order: [2],
   },
   service_available_intake: {
-    groups: ['service-intake-details', 'about'],
+    groups: ['service-intake-details'],
+    label: 'Are services available the same day as intake?',
+    order: [0],
   },
   service_available_intake_notes: {
-    groups: ['service-intake-details', 'about'],
+    groups: ['service-intake-details'],
+    label: ['Intake notes'],
+    order: [1],
   },
   schedule_notes: {
     groups: ['schedule'],
   },
   document_assistance: {
-    groups: ['about', 'services-offered'],
+    groups: ['services-and-policies'],
+    label: 'Assistance with forms offered',
+    order: [0],
   },
   visual_aids_offered: {
-    groups: ['about', 'services-offered'],
+    groups: ['services-and-policies'],
+    label: 'Visual aids offered for low-literacy clients?',
+    order: [1],
   },
   consultation_opportunity: {
-    groups: ['about', 'services-offered'],
+    groups: ['services-and-policies'],
+    label: 'Offers consultation before paperwork',
+    order: [3],
   },
   enforcement_request_policy: {
-    groups: ['policy'],
+    groups: ['services-and-policies'],
+    label: 'Has policy to respond to Immigration and Customs Enforcement requests?',
+    order: [4],
   },
   cultural_competency_offered: {
-    groups: ['about', 'services-offered'],
+    groups: ['services-and-policies'],
+    label: 'Cultural competence trained',
+    order: [5],
   },
   zipcode_eligibility: {
     groups: ['eligibility'],
     order: [0],
+    label: 'Eligible zipcodes',
   },
   age_eligibility: {
     groups: ['eligibility'],
-    order: [1]
+    order: [3],
+    label: 'Eligible age groups',
   },
   id_accepted_current: {
-    groups: ['id-details', 'about'],
+    groups: ['id-details'],
+    label: 'Current accepted IDs',
+    order: [0],
   },
   website_languages: {
     groups: ['language-support'],
@@ -228,33 +262,38 @@ export const attributeSettings = {
     label: 'Interpretation',
   },
   crisis_services_offered: {
-    groups: ['about', 'services-offered', 'service-checks'],
-    order: [4, 4, 4],
+    groups: ['services-offered', 'service-checks'],
+    order: [4, 4],
   },
   document_languages: {
     groups: ['language-support'],
     label: 'Document',
   },
   immigration_status: {
-    groups: ['policy'],
+    groups: ['eligibility'],
+    order: [6],
   },
   income_eligibility: {
     groups: ['eligibility'],
-    order: [2]
+    order: [1],
+    label: 'Eligible incomes (% of federal poverty level)',
   },
   id_accepted_expired: {
-    groups: ['id-details', 'about'],
+    groups: ['id-details'],
+    order: [1],
+    label: 'Expired accepted IDs',
   },
   gender_eligibility: {
     groups: ['eligibility'],
-    order: [3],
+    order: [2],
+    label: 'Eligible Gender',
   },
   schedule: {
     groups: ['schedule'],
     label: ['Program/Service Hours'],
   },
   service_cost: {
-    groups: ['summary'],
+    groups: [],
   },
   source: {
     label: 'A2S Verified',
@@ -264,11 +303,10 @@ export const attributeSettings = {
   agency_name: {
     groups: ['summary', 'listing'],
     label: 'Who is providing this help?',
-    order: [1, 0],
+    order: [0, 0],
   },
   agency_website: {
-    groups: ['summary'],
-    label: 'Learn more about this group.',
+    groups: [],
   },
   agency_phone: {
     groups: ['listing', 'contact'],
@@ -276,8 +314,8 @@ export const attributeSettings = {
     order: [5]
   },
   language_arr: {
-    groups: ['listing', 'language-support'],
-    label: 'Languages',
-    order: [4]
+    groups: ['listing', 'summary', 'language-support'],
+    label: ['Languages Spoken', 'Program Languages Spoken', 'Program'],
+    order: [4, 7, 0]
   },
 }

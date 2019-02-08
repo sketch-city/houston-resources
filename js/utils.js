@@ -2,6 +2,7 @@ import { format } from 'date-fns'
 import replaceAll from 'voca/replace_all'
 import kebabCase from 'voca/kebab_case'
 import titleCase from 'voca/title_case'
+import isArray from 'lodash/isArray'
 
 import {
   attributeSettings,
@@ -106,7 +107,9 @@ function groupSettings(settings = attributeSettings) {
         const settingsCombined = Object.assign({
           order: labellizedSettings[key].groups[group],
           groups: groups,
-        }, labelledSettings)
+        }, labelledSettings, {
+          label: ((isArray(labellizedSettings[key].label[groupIndex]) && labellizedSettings[key].label[groupIndex]) || labellizedSettings[key].label)
+        })
 
         if (!grouped[group]) {
           grouped[group] = []
@@ -153,7 +156,9 @@ function handleDataFromAPIToView(object) {
         const viewDataOrdered = Object.assign({
           order: labellizedSettings[key].groups[group],
           groups: groups,
-        }, viewData)
+        }, viewData, {
+          label: (isArray(label) && label[groupIndex]) || label
+        })
 
         if (!transformedViewData[group]) {
           transformedViewData[group] = []
@@ -213,6 +218,10 @@ function getDataFromForm(formElement) {
     dataAsObject[key] = `${(dataAsObject[key] && (dataAsObject[key] + ', ')) || ''}${value}`
   })
   return dataAsObject
+}
+
+function loadGoogleMapsAPI() {
+
 }
 
 export {

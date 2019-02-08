@@ -1,7 +1,9 @@
 import BaseComponent from './base'
+import isEmpty from 'lodash/isEmpty'
+
 class LabelledItem extends BaseComponent {
   static renderItem(item) {
-    return item || `?`
+    return (!isEmpty(item) && item) || `n/a`
   }
   static markup({ label, item, attribute }) {
     const dataAttrs = `

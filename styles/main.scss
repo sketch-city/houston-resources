@@ -27,7 +27,6 @@ body {
 }
 
 .toggle {
-  float: right;
   cursor: pointer;
 }
 
@@ -38,6 +37,10 @@ body {
   .labelled-item--label {
     display: none;
   }
+}
+
+.labelled-item {
+  margin-bottom: 0.5em;
 }
 
 #search-result-container {
@@ -147,4 +150,12 @@ footer {
     margin-right: 8px;
     font-weight: 400;
   }
+}
+
+#program-result-container {
+  padding-top: 24px;
+}
+
+label {
+  cursor: pointer;
 }
