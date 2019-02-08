@@ -24,10 +24,7 @@ function hasValues(data) {
 }
 
 class ProgramDetail extends BaseComponent {
-  static markup({data}) {
-  	if (!data.summary) {
-  		return ``
-  	}
+  static detailsMarkup({data}) {
     return `
 <div class="custom-control custom-switch">
   <input type="checkbox" class="custom-control-input" id="toggle-missing">
@@ -76,6 +73,15 @@ class ProgramDetail extends BaseComponent {
   <h4 class="${hasValues(data['services-and-policies'])? '':'hideable'}">Additional Services and Policies</h4>
   ${ data['services-and-policies'].map(renderProperty).join('') }
 </div>
+    `
+  }
+
+  static markup(properties) {
+
+    if (!properties.data.summary) { return ``}
+
+    return `
+  ${this.detailsMarkup(properties)}
     `
   }
 }

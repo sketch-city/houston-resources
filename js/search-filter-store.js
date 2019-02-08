@@ -4,6 +4,9 @@ import { fromJS } from 'immutable'
 export const initialState = fromJS({
   items: [],
   filters: {},
+  program: {
+    data: {}
+  },
 })
 
 function filterReducer(currentState = initialState, action) {
@@ -14,6 +17,9 @@ function filterReducer(currentState = initialState, action) {
       break
     case 'ITEMS_CHANGE':
       return currentState.set('items', action.items)
+      break
+    case 'PROGRAM_VIEW':
+      return currentState.set('program', action.program)
       break
   }
 }
