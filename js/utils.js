@@ -8,13 +8,12 @@ import {
   commonCities,
 } from './constants'
 
-const PHONE_REGEX = /(\+?( |-|\.)?\d{1,2}( |-|\.)?)?(\(?\d{3}\)?|\d{3})( |-|\.)?(\d{3}( |-|\.)?\d{4})/g
-
 function cleanStrings(string) {
   return replaceAll(replaceAll(string, /â€™/, "'"), /Â/, '')
 }
 
 function getLabelAndPhone(string, index) {
+  const PHONE_REGEX = /(\+?( |-|\.)?\d{1,2}( |-|\.)?)?(\(?\d{3}\)?|\d{3})( |-|\.)?(\d{3}( |-|\.)?\d{4})/g
   const phone = string.match(PHONE_REGEX)
   if (!phone || !phone.length) {
     return {}
@@ -131,7 +130,8 @@ function groupSettings(settings = attributeSettings) {
 }
 
 export const groupedSettings = groupSettings()
-
+window.groupedSettings = groupedSettings
+window.labellizedSettings = labellizedSettings
 function handleDataFromAPIToView(object) {
   let transformedViewData = {}
 
@@ -197,12 +197,22 @@ function dataToViewData(key, index, item) {
 }
 
 // kinda clunky, but it'll do for now
-const hostnameRegex = /^(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\-]*[a-zA-Z0-9])\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\-]*[A-Za-z0-9])$/
 function buildURL(pathnameWithHTML) {
+  const hostnameRegex = /^(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\-]*[a-zA-Z0-9])\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\-]*[A-Za-z0-9])$/
   if (location.host.search(hostnameRegex) === 0) {
     return `/${location.pathname.split('/')[1]}/${pathnameWithHTML.replace(/(^\/)/, '').replace('.html', '')}`
   }
   return pathnameWithHTML
+}
+
+
+function getDataFromForm(formElement) {
+  const data = new FormData(formElement)
+  const dataAsObject = {}
+  data.forEach((value, key) => {
+    dataAsObject[key] = `${(dataAsObject[key] && (dataAsObject[key] + ', ')) || ''}${value}`
+  })
+  return dataAsObject
 }
 
 export {
@@ -213,4 +223,5 @@ export {
   dataToViewData,
   handleDataFromAPIToView,
   buildURL,
+  getDataFromForm,
 }

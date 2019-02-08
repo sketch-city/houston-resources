@@ -22,7 +22,6 @@ function renderProperty(property) {
 
 class SearchResultItem extends BaseComponent {
   static markup(properties) {
-
     return `
 <a href="${buildURL('/program.html')}?id=${properties.identifiers.find(({attribute}) => attribute == 'id').item}" class="list-group-item list-group-item-action">
   ${ properties.listing.map(renderProperty).join('') }

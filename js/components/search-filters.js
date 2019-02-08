@@ -1,8 +1,9 @@
 import kebabCase from 'voca/kebab_case'
 
-import { groupedSettings } from '../utils'
-
+import { groupedSettings, getDataFromForm } from '../utils'
 import { categories } from '../constants'
+
+import searchFilterStore from '../search-filter-store'
 
 import BaseComponent from './base'
 import FormCheck from './form-check'
@@ -11,30 +12,36 @@ import FormGroupSelect from './form-group-select'
 
 class SearchFilters extends BaseComponent {
   addEventListeners() {
-    this.el.children[0]
-      .addEventListener('submit', (submitEvent) => {
+    const context = this
+    const filters = getDataFromForm(context.el.children[0])
+    searchFilterStore.dispatch({ type: 'FILTERS_CHANGE' , filters })
+    context.el.children[0]
+      .addEventListener('submit', function (submitEvent) {
         submitEvent.preventDefault()
-        const data = new FormData(submitEvent.target)
-
-        const dataAsObject = {}
-
-        data.forEach((value, key) => {
-          dataAsObject[key] = `${(dataAsObject[key] && (dataAsObject[key] + ', ')) || ''}${value}`
-        })
-
-        window.dataAsObject = dataAsObject
+        context.handleChange.call(this, submitEvent)
       })
+    context.el.children[0]
+      .addEventListener('change', context.handleChange)
+  }
+  handleChange(formEvent) {
+    const filters = getDataFromForm(this)
+    searchFilterStore.dispatch({ type: 'FILTERS_CHANGE' , filters })
   }
   static markup( properties ) {
-
+    const filters = properties.get('filters')
     return `
 <form class="card border-success" id="search-filters--form">
   <h5 class="card-header bg-transparent border-success"><strong>Filter</strong></h5>
   <div class="card-body search-filters--filters">
     <div class="form-group">
       ${
-        groupedSettings['filterable-checklist']
-          .map(item => FormCheck.markup(Object.assign({}, item, {attribute: 'service-checks'})) )
+        groupedSettings['service-checks']
+          .map(item => FormCheck.markup(
+            Object.assign({}, item, {
+              attribute: 'service-checks',
+              checked: (filters['service-checks'] || '').includes(item.label)
+            }))
+          )
           .join('')
       }
     </div>

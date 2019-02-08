@@ -102,7 +102,7 @@ export const attributeSettings = {
   },
   ada: {
     label: 'ADA Compliant',
-    groups: ['about', 'services-provided', 'filterable-checklist'],
+    groups: ['about', 'services-provided', 'service-checks'],
     order: [0, 0, 2]
   },
   application_process: {
@@ -118,7 +118,7 @@ export const attributeSettings = {
     groups: ['about'],
   },
   service_type: {
-    groups: ['services-provided', 'icon'],
+    groups: ['services-provided', 'icon', 'service-type'],
     label: 'Service Type'
   },
   last_updated: {
@@ -136,12 +136,12 @@ export const attributeSettings = {
     order: [1, 1],
   },
   accepting_clients: {
-    groups: ['summary', 'listing', 'filterable-checklist'],
+    groups: ['summary', 'listing', 'service-checks'],
     order: [0, 3, 1],
   },
   transportation: {
     label: 'Provides Transportation',
-    groups: ['services-provided', 'filterable-checklist'],
+    groups: ['services-provided', 'service-checks'],
     order: [3, 3],
   },
   latitude: {
@@ -228,7 +228,7 @@ export const attributeSettings = {
     label: 'Interpretation',
   },
   crisis_services_offered: {
-    groups: ['about', 'services-offered', 'filterable-checklist'],
+    groups: ['about', 'services-offered', 'service-checks'],
     order: [4, 4, 4],
   },
   document_languages: {
@@ -258,7 +258,7 @@ export const attributeSettings = {
   },
   source: {
     label: 'A2S Verified',
-    groups: ['filterable-checklist'],
+    groups: ['service-checks'],
     order: [0],
   },
   agency_name: {

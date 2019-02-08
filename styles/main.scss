@@ -59,6 +59,8 @@ main {
 }
 
 #search-filters-container {
+  padding-top: 24px;
+
   .card {
     position: fixed;
     max-width: calc(100% / 3 - 50px);

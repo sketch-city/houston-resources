@@ -5,7 +5,8 @@ class BaseComponent {
     this.name = kebabCase(this.constructor.name)
     this.el = el || this.init()
 
-    this.update(properties)
+    this.properties = properties
+    this.render()
     this.addEventListeners()
   }
 

@@ -1,25 +1,27 @@
 import { createStore } from 'redux'
+import { fromJS } from 'immutable'
 
-const initialState = {
+export const initialState = fromJS({
   items: [],
   filters: {},
-}
-
-function deepCopy(info) {
-  return JSON.parse(JSON.stringify(info))
-}
-
-function filterData(info, filter) {
-  
-}
+})
 
 function filterReducer(currentState = initialState, action) {
-  let upcomingState = deepCopy(currentState)
 
-
-
+  switch (action.type) {
+    case 'FILTERS_CHANGE':
+      return currentState.set('filters', action.filters)
+      break
+    case 'ITEMS_CHANGE':
+      return currentState.set('items', action.items)
+      break
+  }
 }
 
 const store = createStore(filterReducer)
+
+store.subscribe(() => {
+  window.HEY = store.getState()
+})
 
 export default store
