@@ -11,6 +11,11 @@ import {
 } from './constants'
 
 export const attributeSettings = {
+  a2s_verified: {
+    label: 'A2S Verified',
+    groups: ['service-checks'],
+    order: [0],
+  },
   agency_id: {
     groups: ['identifiers'],
   },
@@ -228,9 +233,7 @@ export const attributeSettings = {
     groups: [],
   },
   source: {
-    label: 'A2S Verified',
-    groups: ['service-checks'],
-    order: [0],
+    groups: [],
   },
   agency_name: {
     groups: ['summary', 'listing'],
@@ -390,6 +393,8 @@ function handleDataFromAPIToView(object) {
       if (additionalTransforms[key] && item) {
         item = additionalTransforms[key](item)
       }
+
+      if (!labellizedSettings[key]) { return }
 
       const { attribute, label } = labellizedSettings[key]
 

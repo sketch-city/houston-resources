@@ -39,7 +39,9 @@ class SearchFilters extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.state.resultsCount = nextProps.resultsCount
+    this.setState({
+      resultsCount: nextProps.resultsCount
+    })
     this.jetsSearch.search(nextProps.filters.keywords)
   }
 

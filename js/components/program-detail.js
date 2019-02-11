@@ -118,11 +118,16 @@ class DetailsMarkup extends Component {
   }
 }
 
-const ProgramDetail = ({ program: data }) => {
+const ProgramDetail = ({ program: data, programsByAgency }) => {
+  console.log(programsByAgency)
   if (!data.summary) { return }
   return <DetailsMarkup data={ data }/>
 }
 
-export default connect((state) => ({
-  program: ((state && state.get('program').data) || { data: {} })
-}))( ProgramDetail )
+export default connect((state) => {
+  const agencyId = (state && state.get('program').data.identifiers.find(({ attribute }) => attribute === 'agency-id').item)
+  return {
+    program: ((state && state.get('program').data) || { data: {} }),
+    programsByAgency: ((state && state.get('programsByAgency').get(agencyId)) || []),
+  }
+})( ProgramDetail )

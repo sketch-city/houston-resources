@@ -19,7 +19,20 @@ loadGoogleMapsAPI(initMap)
 axios.get(`${searchURL}${(location.search || '')}`)
   .then(({ data }) => {
     searchFilterStore.dispatch({ type: 'PROGRAM_VIEW', program: { data: handleDataFromAPIToView(data[0])} })
+    return getProgramsForAgency(data[0].agency_id)
   })
+
+function getProgramsForAgency(agencyId) {
+  return axios.get(`${searchURL}?agency_id=${agencyId}`)
+    .then(({ data }) => {
+      searchFilterStore.dispatch({
+        type: 'PROGRAMS_BY_AGENCY_VIEW',
+        programsByAgency: {
+          [agencyId]: data.map(handleDataFromAPIToView),
+        },
+      })
+    })
+}
 
 function updateMap(map, program) {
   if (program.data.location.find(({ attribute }) => attribute === 'latitude')) {
@@ -46,8 +59,7 @@ searchFilterStore.subscribe(() => {
 
 function initMap() {
   const houston = { lat: 29.76, lng: -95.37 }
-  const map = new google.maps.Map(
-      document.getElementById('map'), {zoom: 10, center: houston})
+  const map = new google.maps.Map(document.getElementById('map'), { zoom: 10, center: houston })
 
   if (searchFilterStore.getState()) {
     const programState = searchFilterStore.getState().get('program')

@@ -1,5 +1,5 @@
 import { createStore } from 'redux'
-import { fromJS } from 'immutable'
+import { fromJS, Map } from 'immutable'
 
 import isEmpty from 'lodash/isEmpty'
 import includes from 'lodash/includes'
@@ -11,7 +11,8 @@ export const initialState = fromJS({
   program: {
     data: {}
   },
-  filteredResults: []
+  filteredResults: [],
+  programsByAgency: {},
 })
 
 function hasServiceCheck(serviceChecks, checks) {
@@ -35,7 +36,6 @@ function filterData({ filters, items }) {
 }
 
 function filterReducer(currentState = initialState, action) {
-
   switch (action.type) {
     case 'FILTERS_CHANGE':
       return currentState
@@ -56,7 +56,14 @@ function filterReducer(currentState = initialState, action) {
               )
       break
     case 'PROGRAM_VIEW':
-      return currentState.set('program', action.program)
+      return currentState
+              .set('program', action.program)
+      break
+    case 'PROGRAMS_BY_AGENCY_VIEW':
+      return currentState
+              .mergeDeep({
+                programsByAgency: action.programsByAgency,
+              })
       break
   }
 }
