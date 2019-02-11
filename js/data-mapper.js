@@ -30,7 +30,7 @@ export const attributeSettings = {
   },
   physical_address: {
     label: 'Address',
-    groups: ['listing', 'contact'],
+    groups: ['listing', 'contact', 'coverage'],
     order: [6, 6]
   },
   ada: {
@@ -49,7 +49,7 @@ export const attributeSettings = {
     groups: ['about'],
   },
   coverage_area: {
-    groups: ['summary'],
+    groups: ['summary', 'coverage'],
     order: [2],
     label: 'Program Neighborhood/Area',
   },
@@ -92,7 +92,7 @@ export const attributeSettings = {
     groups: ['schedule'],
   },
   service_area: {
-    groups: [],
+    groups: ['coverage'],
   },
   next_steps: {
     groups: ['summary'],
@@ -167,7 +167,7 @@ export const attributeSettings = {
     order: [5],
   },
   zipcode_eligibility: {
-    groups: ['eligibility'],
+    groups: ['eligibility', 'coverage'],
     order: [0],
     label: 'Eligible zipcodes',
   },

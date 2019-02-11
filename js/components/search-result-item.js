@@ -21,10 +21,12 @@ function renderProperty(property) {
 }
 
 const SearchResultItem = ( properties ) => (
-  <a href={`${buildURL('/program.html')}?id=${properties.identifiers.find(({attribute}) => attribute == 'id').item}`}
+  <a
+    href={`${buildURL('/program.html')}?id=${properties.identifiers.find(({attribute}) => attribute == 'id').item}`}
     className="list-group-item list-group-item-action"
-    data-jets={properties.searchable}>
-    {properties.listing.map(renderProperty)}
+    data-coverage={ properties.coverage.map( (data) => data.item ).join(' ') }
+    data-jets={ properties.searchable }>
+    { properties.listing.map(renderProperty) }
   </a>
 )
 

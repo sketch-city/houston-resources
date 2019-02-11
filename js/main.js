@@ -8,4 +8,4 @@ loadAllItems()
 const categoryList = document.getElementById('category-list')
 render((<div className="row">{categories.map(Category)}</div>), categoryList)
 
-document.querySelector('form').action = buildURL(document.querySelector('form').action)
+document.querySelector('form').action = buildURL('/search.html')
