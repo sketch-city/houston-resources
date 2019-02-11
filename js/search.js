@@ -1,25 +1,28 @@
-import { searchURL } from './constants'
-import axios from 'axios'
+import { h, render } from 'preact'
+import { Provider, connect } from 'preact-redux'
 
-import { handleDataFromAPIToView } from './utils'
-import searchFilterStore, {initialState} from './search-filter-store'
+import { loadAllItems, mapFromMapToObject } from './utils'
 
-import SearchResultList from './components/search-result-list'
-import SearchFilters from './components/search-filters'
+import searchFilterStore from './search-filter-store'
 
-const searchResultContainer = document.getElementById('search-result-container')
-const searchFiltersContainer = document.getElementById('search-filters-container')
+import Search from './components/search'
 
-const searchResultList = new SearchResultList(initialState, searchResultContainer)
-const searchFilters = new SearchFilters(initialState, searchFiltersContainer)
+const container = document.getElementById('container')
 
-axios.get(`${searchURL}${(location.search || '')}`)
-  .then(({data}) => {
-    const dataView = data.map(handleDataFromAPIToView)
-    searchFilterStore.dispatch({ type: 'ITEMS_CHANGE', items: dataView })
-  })
+loadAllItems()
 
-searchFilterStore.subscribe(() => {
-  searchResultList.update( searchFilterStore.getState() )
-  // searchFilters.update( searchFilterStore.getState() )
-})
+function handlePageLoaded() {
+  const params = new URLSearchParams(location.search)
+  const filters = mapFromMapToObject(params)
+  searchFilterStore.dispatch({ type: 'FILTERS_CHANGE' , filters })
+}
+
+document.addEventListener('DOMContentLoaded', handlePageLoaded)
+
+const ConnectedSearchMain = () => (
+  <Provider store={ searchFilterStore }>
+    <Search/>
+  </Provider>
+)
+
+render(<ConnectedSearchMain/>, container)

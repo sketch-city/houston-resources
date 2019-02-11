@@ -43,6 +43,10 @@ body {
   margin-bottom: 0.5em;
 }
 
+.labelled-item--label {
+  margin-right: 0.25em;
+}
+
 #search-result-container {
   .minimize {
     .labelled-item[data-item=''] {
@@ -158,6 +162,16 @@ footer {
 
 label {
   cursor: pointer;
+}
+
+.form-check {
+  label {
+    width: 100%;
+  }
+
+  &:hover {
+    background: $gray-200;
+  }
 }
 
 #map {

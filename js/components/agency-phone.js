@@ -1,16 +1,15 @@
-import BaseComponent from './base'
 import LabelledItem from './labelled-item'
+import { h } from 'preact'
+import isEmpty from 'lodash/isEmpty'
 
-class AgencyPhone extends BaseComponent {
-  static markup(properties) {
-    if (!properties.item || !properties.item.length) {
-      return ``
-    }
-
-    return `
-${ properties.item.map(LabelledItem.markup).join('') }
-    `
+const AgencyPhone = ({ label, item, attribute }) => {
+  if (isEmpty(item)) {
+    return
   }
+
+  return (<div>
+    {item.map(LabelledItem)}
+  </div>)
 }
 
 export default AgencyPhone
