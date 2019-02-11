@@ -6,6 +6,7 @@ import AgencyPhone from './agency-phone'
 import Name from './name'
 import AgencyName from './agency-name'
 import LabelledInlineList from './labelled-inline-list'
+import { SearchResultList } from './search-result-list'
 
 import isEmpty from 'lodash/isEmpty'
 
@@ -119,9 +120,14 @@ class DetailsMarkup extends Component {
 }
 
 const ProgramDetail = ({ program: data, programsByAgency }) => {
-  console.log(programsByAgency)
   if (!data.summary) { return }
-  return <DetailsMarkup data={ data }/>
+  return (
+    <div>
+      <DetailsMarkup data={ data }/>
+      <h4 className="mt-4">All Programs by { data.summary.find(({ attribute }) => attribute === 'agency-name').item }</h4>
+      <SearchResultList results={ programsByAgency }/>
+    </div>
+  )
 }
 
 export default connect((state) => {
