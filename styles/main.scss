@@ -189,6 +189,11 @@ label {
   cursor: pointer;
 }
 
+label,
+.labelled-item--label {
+  font-family: $headings-font-family;
+}
+
 .form-check {
   label {
     width: 100%;

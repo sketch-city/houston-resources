@@ -5,7 +5,7 @@ import SearchFilters from './search-filters'
 import { buildURL } from '../utils'
 
 export default () => {
-  return (<div className="container">
+  return (<div className="container-fluid">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href={ buildURL('/index.html') }>Home</a></li>

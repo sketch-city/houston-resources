@@ -116,7 +116,7 @@ class DetailsMarkup extends Component {
               { data.contact.map(renderProperty) }
               <LabelledLink
                 label=""
-                item={`http://google.com/maps/dir/${(data.contact.find(({ attribute }) => attribute === 'physical-address') || {}).item}`}
+                item={`http://google.com/maps/dir//${(data.contact.find(({ attribute }) => attribute === 'physical-address') || {}).item}`}
                 attribute = "directions"
                 groups = {['contact']}
               >
@@ -158,7 +158,8 @@ const ProgramDetail = ({ program: data, programsByAgency }) => {
   return (
     <div>
       <DetailsMarkup data={ data }/>
-      <h4 className="mt-4">All Programs by { data.summary.find(({ attribute }) => attribute === 'agency-name').item }</h4>
+      <h4 className="mt-4">All Programs</h4>
+      <h6>by <strong>{ data.summary.find(({ attribute }) => attribute === 'agency-name').item }</strong></h6>
       <SearchResultList results={ programsByAgency }/>
     </div>
   )

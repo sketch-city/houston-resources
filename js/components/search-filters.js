@@ -113,7 +113,7 @@ class SearchFilters extends Component {
     <FormGroupInput
       attribute = "zip-code"
       label = "Zip Code"
-      placeholder = "77000"
+      placeholder = ""
       value = { filters['zip-code'] }
     />
     <FormGroupSelect
@@ -133,7 +133,7 @@ class SearchFilters extends Component {
       placeholder = "Select an AMI"
       value = { filters['income-eligibility'] }
       options = {
-        [80, 110, 140].map(percent => ({ value: percent, label: `${percent}%` }))
+        [80, 110, 140].map(percent => ({ value: percent, label: `< ${percent}%` }))
       }
     />
     <FormGroupSelect
@@ -142,7 +142,7 @@ class SearchFilters extends Component {
       placeholder = "Select an Immigration Status"
       value = { filters['immigration-status'] }
       options = {
-        ['US Citizen', 'Other'].map(label => ({ value: label, label }))
+        ['U.S. Citizen', 'Other'].map(label => ({ value: label, label }))
       }
     />
     <FormGroupSelect
@@ -174,7 +174,7 @@ class SearchFilters extends Component {
     <hr/>
     <a name="schedule">Schedule</a>
     <div className="form-group">
-      <p>Open</p>
+      <label>Open</label>
       <FormCheck
         attribute="open"
         label="Now"
@@ -209,7 +209,7 @@ class SearchFilters extends Component {
       </div>
     </div>
     <div className="form-group">
-      <p>Requires Appointment</p>
+      <label>Requires Appointment</label>
       <div className="form-check form-check-inline">
         <Checkbox
           value = "Yes"

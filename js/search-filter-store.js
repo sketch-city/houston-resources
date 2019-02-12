@@ -3,6 +3,7 @@ import { fromJS, Map } from 'immutable'
 
 import isEmpty from 'lodash/isEmpty'
 import isNil from 'lodash/isNil'
+import isEqual from 'lodash/isEqual'
 import isNumber from 'lodash/isNumber'
 import includes from 'lodash/includes'
 import intersection from 'lodash/intersection'
@@ -58,9 +59,22 @@ function filterData({ filters, items }) {
     const passesCompleteness = isEmpty(filters['immigrant-accessibility']) || (countGroupCompleteness(item['immigrant-accessibility']) > parseInt(filters['immigrant-accessibility']))
     const isAppointmentRequired = isEmpty(filters['appointment-required']) || hasMatching(filters['appointment-required'], item['appointment-required'])
     const hasZip = isEmpty(filters['zip-code']) || hasMatching(filters['zip-code'], item['coverage'])
+    const isIncomeEligible = isEmpty(filters['income-eligibility']) || (parseInt(item['eligibility'].find(({ attribute }) => (attribute === 'income-eligibility')).item.replace('%', '') || 0) < parseInt(filters['income-eligibility']))
+    const isImmigrationStatus = isEmpty(filters[['immigration-status']]) || (
+      (
+        (filters['immigration-status'] === 'Other') &&
+        (!isEqual(
+          ['U.S. Citizen'],
+          item['eligibility'].find(({ attribute }) => (attribute === 'immigration-status')).item
+        ))
+      ) ||
+      isEqual(
+        [filters['immigration-status']],
+        item['eligibility'].find(({ attribute }) => (attribute === 'immigration-status')).item
+      )
+    )
 
-
-    return hasServices && isServiceType && hasLanguage && passesCompleteness && isAppointmentRequired && hasZip
+    return hasServices && isServiceType && hasLanguage && passesCompleteness && isAppointmentRequired && hasZip && isIncomeEligible && isImmigrationStatus && isImmigrationStatus
   })
 }
 
