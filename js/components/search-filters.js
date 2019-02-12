@@ -16,7 +16,7 @@ class SearchFilters extends Component {
   constructor(props) {
     super(props)
 
-    this.state.resultsCount = props.resultsCount
+    // this.state.resultsCount = props.resultsCount
   }
   componentDidMount() {
     this.searchFiltersForm
@@ -39,9 +39,9 @@ class SearchFilters extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({
-      resultsCount: nextProps.resultsCount
-    })
+    // this.setState({
+    //   resultsCount: nextProps.resultsCount
+    // })
     this.jetsSearch.search(nextProps.filters.keywords)
   }
 
@@ -60,7 +60,7 @@ class SearchFilters extends Component {
   render( { filters } ) {
     return (
 <form className="card border-success" id="search-filters--form" ref={searchFiltersForm => this.searchFiltersForm = searchFiltersForm}>
-  <h5 className="card-header bg-transparent border-success"><strong>Filter</strong> {this.state.resultsCount}</h5>
+  <h5 className="card-header bg-transparent border-success"><strong>Filter</strong></h5>
   <div className="card-body search-filters--filters">
     <div className="form-group">
       {
@@ -210,7 +210,7 @@ class SearchFilters extends Component {
 export default connect(
   (state) => ({
     filters: ((state && state.get('filters')) || {}),
-    resultsCount: ((state && state.get('filteredResults')) || []).length,
+    // resultsCount: ((state && state.get('filteredResults')) || []).length,
   }), {
     updateFilters: (content) => ({
       type: 'FILTERS_CHANGE',

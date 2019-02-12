@@ -1,25 +1,17 @@
 import isEmpty from 'lodash/isEmpty'
 import { h } from 'preact'
+import Labelled from './labelled'
 
 const LabelledInlineList = ({ label, item, attribute, groups }) => {
-  const dataAttrs = {
-    'data-label': label,
-    'data-attribute': attribute,
-    'data-item': item,
-    'data-groups': (groups || []).join(', ')
-  }
-
-  return (<div
-    className={`labelled-item labelled-for-${attribute}`}
-    {...dataAttrs}>
-    <span className="labelled-item--label">
-      {label}
-    </span>
-    <span className="labelled-item--item">
+  return (
+    <Labelled
+      label={label}
+      item={item}
+      attribute={attribute}
+      groups={groups}
+    >
       {(!isEmpty(item) && item.join(', ')) || 'n/a'}
-    </span>
-  </div>)
+    </Labelled>)
 }
-
 
 export default LabelledInlineList

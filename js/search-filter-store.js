@@ -2,6 +2,7 @@ import { createStore } from 'redux'
 import { fromJS, Map } from 'immutable'
 
 import isEmpty from 'lodash/isEmpty'
+import isNil from 'lodash/isNil'
 import includes from 'lodash/includes'
 import intersection from 'lodash/intersection'
 
@@ -17,7 +18,7 @@ export const initialState = fromJS({
 
 function hasServiceCheck(serviceChecks, checks) {
   return checks.find((check) => {
-      return includes((serviceChecks || ''), check.label) && !isEmpty(check.item)
+      return includes((serviceChecks || ''), check.label) && (!isEmpty(check.item) || check.item === true)
     })? true : false
 }
 

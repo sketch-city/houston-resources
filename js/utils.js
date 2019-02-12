@@ -60,7 +60,6 @@ function loadGoogleMapsAPI(mapAPILoadedHandler) {
 function loadAllItems() {
   return axios.get(`${searchURL}`)
     .then((response) => {
-      console.log(response, response.data)
       const dataView = response.data.map(handleDataFromAPIToView)
       searchFilterStore.dispatch({ type: 'ITEMS_CHANGE', items: dataView })
     })

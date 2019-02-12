@@ -1,6 +1,7 @@
 import { h, Component } from 'preact'
 import { connect } from 'preact-redux'
 import LabelledItem from './labelled-item'
+import LabelledLink from './labelled-link'
 
 import AgencyPhone from './agency-phone'
 import Name from './name'
@@ -15,6 +16,7 @@ const customRenders = {
   'name': Name,
   'agency-name': AgencyName,
   'language-arr': LabelledInlineList,
+  'transportation': LabelledLink,
 }
 
 function renderProperty(property) {

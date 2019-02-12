@@ -2,7 +2,7 @@ import isEmpty from 'lodash/isEmpty'
 import { h } from 'preact'
 import Labelled from './labelled'
 
-const LabelledItem = ({ label, item, attribute, groups }) => {
+const LabelledLink = ({ label, item, attribute, groups }) => {
   return (
     <Labelled
       label={label}
@@ -10,8 +10,10 @@ const LabelledItem = ({ label, item, attribute, groups }) => {
       attribute={attribute}
       groups={groups}
     >
-      {(!isEmpty(item) && item) || 'n/a'}
+      {(!isEmpty(item) && (
+        <a href={item} target="_blank">Information Here</a>
+      )) || 'n/a'}
     </Labelled>)
 }
 
-export default LabelledItem
+export default LabelledLink
