@@ -2,7 +2,7 @@ import isEmpty from 'lodash/isEmpty'
 import { h } from 'preact'
 import Labelled from './labelled'
 
-const LabelledLink = ({ label, item, attribute, groups }) => {
+const LabelledLink = ({ label, item, attribute, groups, children }) => {
   return (
     <Labelled
       label={label}
@@ -11,7 +11,7 @@ const LabelledLink = ({ label, item, attribute, groups }) => {
       groups={groups}
     >
       {(!isEmpty(item) && (
-        <a href={item} target="_blank">Information Here</a>
+        <a href={item} target="_blank">{( children || 'Information Here' )}</a>
       )) || 'n/a'}
     </Labelled>)
 }

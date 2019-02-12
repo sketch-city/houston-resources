@@ -36,7 +36,7 @@ export const attributeSettings = {
   physical_address: {
     label: 'Address',
     groups: ['listing', 'contact', 'coverage'],
-    order: [6, 6]
+    order: [6, 2, 6]
   },
   ada: {
     label: 'ADA accessible?',
@@ -71,6 +71,7 @@ export const attributeSettings = {
   website: {
     groups: ['contact'],
     label: 'Program webpage',
+    order: [1],
   },
   appointment_required: {
     groups: ['requirements', 'appointment-required'],
@@ -246,7 +247,7 @@ export const attributeSettings = {
   agency_phone: {
     groups: ['listing', 'contact', 'immigrant-accessibility'],
     label: 'Phone Numbers',
-    order: [5]
+    order: [5, 0]
   },
   language_arr: {
     groups: ['listing', 'summary', 'language-support', 'immigrant-accessibility'],

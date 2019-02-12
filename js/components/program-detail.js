@@ -110,10 +110,18 @@ class DetailsMarkup extends Component {
           { data['service-intake-details'].map(renderProperty) }
         </div>
         <div className="list-group">
+          <h4 className={ hasValues(data['contact'])? '':'hideable' }>Contact Information</h4>
           <div className="row">
             <div className="col-md-6">
-              <h4 className={ hasValues(data['contact'])? '':'hideable' }>Contact Information</h4>
               { data.contact.map(renderProperty) }
+              <LabelledLink
+                label=""
+                item={`http://google.com/maps/dir/${(data.contact.find(({ attribute }) => attribute === 'physical-address') || {}).item}`}
+                attribute = "directions"
+                groups = {['contact']}
+              >
+                Directions
+              </LabelledLink>
             </div>
             <div className="col-md-6">
               <div id="map"></div>

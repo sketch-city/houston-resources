@@ -12,9 +12,11 @@ const LabelledItem = ({ label, item, attribute, groups, children }) => {
   return (<div
     className={`labelled-item labelled-for-${attribute}`}
     {...dataAttrs}>
-    <span className="labelled-item--label">
-      {label}
-    </span>
+    {
+      label && (<span className="labelled-item--label">
+        {label}
+      </span>)
+    }
     <span className="labelled-item--item">
       {children}
     </span>
