@@ -3,8 +3,12 @@ import { fromJS, Map } from 'immutable'
 
 import isEmpty from 'lodash/isEmpty'
 import isNil from 'lodash/isNil'
+import isNumber from 'lodash/isNumber'
 import includes from 'lodash/includes'
 import intersection from 'lodash/intersection'
+import difference from 'lodash/difference'
+
+import { countGroupCompleteness } from './utils'
 
 export const initialState = fromJS({
   items: [],
@@ -18,21 +22,45 @@ export const initialState = fromJS({
 
 function hasServiceCheck(serviceChecks, checks) {
   return checks.find((check) => {
-      return includes((serviceChecks || ''), check.label) && (!isEmpty(check.item) || check.item === true)
+      return (
+        includes((serviceChecks || ''), check.label) &&
+        !(
+          (!isEmpty(check.item) && check.item === 'No') ||
+          check.item === false
+        )
+      )
     })? true : false
 }
 
 function hasMatching(value, checks) {
-  return checks.find((check) => (includes(check.item, value) || includes(check.item, value)))? true : false
+  return checks.find((check) => includes(check.item, value))
+}
+
+function hasOther(allValues, checks) {
+  return checks.find((check) => !isEmpty(difference(check.item, allValues)))
 }
 
 function filterData({ filters, items }) {
   return items.filter((item) => {
     const hasServices = isEmpty(filters['service-checks']) || hasServiceCheck(filters['service-checks'], item['service-checks'])
     const isServiceType = isEmpty(filters['service-type']) || hasMatching(filters['service-type'], item['service-type'])
-    const hasLanguage = isEmpty(filters['languages']) || hasMatching(filters['languages'], item['language-support'])
+    const hasLanguage = isEmpty(filters['languages']) || (
+      ((filters['languages'] !== 'Other')  && hasMatching(filters['languages'], item['language-support'])) ||
+      hasOther(
+        ['English',
+          'Spanish',
+          'Vietnamese',
+          'Chinese',
+          'Arabic',
+          'French'
+        ], item['language-support'])
+    )
+    const passesCompleteness = isEmpty(filters['immigrant-accessibility']) || (countGroupCompleteness(item['immigrant-accessibility']) > parseInt(filters['immigrant-accessibility']))
+    const isAppointmentRequired = isEmpty(filters['appointment-required']) || hasMatching(filters['appointment-required'], item['appointment-required'])
+    const hasZip = isEmpty(filters['zip-code']) || hasMatching(filters['zip-code'], item['coverage'])
 
-    return hasServices && isServiceType && hasLanguage
+
+    return hasServices && isServiceType && hasLanguage && passesCompleteness && isAppointmentRequired && hasZip
   })
 }
 

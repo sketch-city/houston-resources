@@ -10,6 +10,7 @@ import LabelledInlineList from './labelled-inline-list'
 import { SearchResultList } from './search-result-list'
 
 import isEmpty from 'lodash/isEmpty'
+import { countGroupCompleteness } from '../utils'
 
 const customRenders = {
   'agency-phone': AgencyPhone,
@@ -26,11 +27,7 @@ function renderProperty(property) {
 }
 
 function hasValues(data) {
-  return data.find(({item}) => !(isEmpty(item)))? true : false
-}
-
-function countGroupCompleteness(data, groupName = 'immigrant-accessibility') {
-  return data.filter(({item}) => !(isEmpty(item))).length
+  return data.find(({item}) => !(isEmpty(item)))
 }
 
 const CompletenessMarkup = ({ data }) => {
@@ -42,7 +39,7 @@ const CompletenessMarkup = ({ data }) => {
 
   const count = countGroupCompleteness(data['immigrant-accessibility'])
 
-  const threshholdForCompleteness = 15
+  const threshholdForCompleteness = 10
   const completeness = ((count === 0) && 'Unknown') || ((count > threshholdForCompleteness) && 'Complete') || 'Partial'
 
   const immigrantAccessibilityCompleteness = {
@@ -68,9 +65,22 @@ class DetailsMarkup extends Component {
   render({ data }) {
     return (
       <div className={this.state.minimize? 'minimize' : ''}>
-        <div className="custom-control custom-switch">
-          <input type="checkbox" className="custom-control-input" id="toggle-missing" onClick={this.toggleMinize.bind(this)}/>
-          <label className="custom-control-label float-right" for="toggle-missing">Show Missing Data</label>
+        <div className="text-right profile-tools">
+          <div className="custom-control custom-switch">
+            <input type="checkbox" className="custom-control-input" id="toggle-missing" onClick={this.toggleMinize.bind(this)}/>
+            <label className="custom-control-label float-right" for="toggle-missing">Show Missing Data</label>
+          </div>
+          <p className="text-muted">
+            <i>Last updated { data['edit-details'][0].item }</i>
+          </p>
+          <div>
+            <a
+              className="btn btn-outline-success btn-sm"
+              target="_blank"
+              href = {`https://needhou-data-cleaner.herokuapp.com/#!/selectprogram/${data.identifiers.find(({attribute}) => attribute === 'id').item}`}>
+                Help complete this profile
+              </a>
+          </div>
         </div>
         <div className="list-group">
           { data.summary.map(renderProperty) }
@@ -93,8 +103,15 @@ class DetailsMarkup extends Component {
           { data['service-intake-details'].map(renderProperty) }
         </div>
         <div className="list-group">
-          <h4 className={ hasValues(data['contact'])? '':'hideable' }>Contact Information</h4>
-          { data.contact.map(renderProperty) }
+          <div className="row">
+            <div className="col-md-6">
+              <h4 className={ hasValues(data['contact'])? '':'hideable' }>Contact Information</h4>
+              { data.contact.map(renderProperty) }
+            </div>
+            <div className="col-md-6">
+              <div id="map"></div>
+            </div>
+          </div>
         </div>
         <div className="list-group">
           <h4 className={ hasValues(data['language-support'])? '':'hideable' }>Language Support</h4>

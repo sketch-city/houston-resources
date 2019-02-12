@@ -1,7 +1,10 @@
 import { h, render } from 'preact'
 import { Provider, connect } from 'preact-redux'
 
-import { loadAllItems, mapFromMapToObject } from './utils'
+import pickBy from 'lodash/pickBy'
+import isEmpty from 'lodash/isEmpty'
+
+import { loadAllItems, mapFromMapToObject, buildURL } from './utils'
 
 import searchFilterStore from './search-filter-store'
 
@@ -16,6 +19,15 @@ function handlePageLoaded() {
   const filters = mapFromMapToObject(params)
   searchFilterStore.dispatch({ type: 'FILTERS_CHANGE' , filters })
 }
+
+searchFilterStore.subscribe(() => {
+  const filters = searchFilterStore.getState().get('filters')
+  const params = new URLSearchParams(pickBy(filters, (value) => (!isEmpty(value))))
+
+  const queryString = params.toString() && ('?' + params.toString())
+
+  window.history.replaceState(null, null, `${ buildURL('/search.html') }${ queryString }`)
+})
 
 document.addEventListener('DOMContentLoaded', handlePageLoaded)
 

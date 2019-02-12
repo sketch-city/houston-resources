@@ -41,6 +41,7 @@ body {
 
 .labelled-item {
   margin-bottom: 0.5em;
+  overflow-wrap: break-word;
 }
 
 .labelled-item--label {
@@ -82,6 +83,19 @@ main {
   .form-group p:first-child {
     margin-bottom: 0;
   }
+}
+
+#search-result-container {
+  padding-top: 24px;
+}
+
+.profile-tools {
+  margin-bottom: -48px;
+}
+
+.profile-tools p {
+  margin-bottom: 0.25em;
+  font-size: 0.9em;
 }
 
 footer {
@@ -143,7 +157,6 @@ footer {
 
 
 .navbar-brand {
-  font-weight: 800;
   font-family: $headings-font-family;
 
   &::before {

@@ -5,7 +5,7 @@ import SearchFilters from './search-filters'
 export default () => {
   return (<div className="container">
     <div className="row">
-      <div className="col-8">
+      <div className="col-8" id="search-result-container">
         <SearchResultList/>
       </div>
       <div className="col" id="search-filters-container">

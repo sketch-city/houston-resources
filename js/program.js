@@ -3,7 +3,7 @@ import { Provider } from 'preact-redux'
 import { searchURL } from './constants'
 import axios from 'axios'
 
-import { loadGoogleMapsAPI } from './utils'
+import { loadGoogleMapsAPI, isGoogleMapsAPILoaded } from './utils'
 import { handleDataFromAPIToView } from './data-mapper'
 
 import searchFilterStore, { initialState } from './search-filter-store'
@@ -14,11 +14,10 @@ let mapObject
 
 const programResultContainer = document.getElementById('program-result-container')
 
-loadGoogleMapsAPI(initMap)
-
 axios.get(`${searchURL}${(location.search || '')}`)
   .then(({ data }) => {
     searchFilterStore.dispatch({ type: 'PROGRAM_VIEW', program: { data: handleDataFromAPIToView(data[0])} })
+    loadGoogleMapsAPI(initMap)
     return getProgramsForAgency(data[0].agency_id)
   })
 
@@ -52,7 +51,9 @@ function updateMap(map, program) {
 searchFilterStore.subscribe(() => {
   const programState = searchFilterStore.getState().get('program')
 
-  if (!mapObject) { return }
+  if (!isGoogleMapsAPILoaded() || !mapObject) {
+    return
+  }
 
   updateMap(mapObject, programState)
 })

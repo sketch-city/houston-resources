@@ -3,12 +3,18 @@ import {
 } from './constants'
 
 import isArray from 'lodash/isArray'
+import isEmpty from 'lodash/isEmpty'
+import includes from 'lodash/includes'
 
 import { searchURL } from './constants'
 import axios from 'axios'
 
 import { handleDataFromAPIToView } from './data-mapper'
 import searchFilterStore, { initialState } from './search-filter-store'
+
+function countGroupCompleteness(data, groupName = 'immigrant-accessibility') {
+  return data.filter(({item}) => !(isEmpty(item))).length
+}
 
 // kinda clunky, but it'll do for now
 function buildURL(pathnameWithHTML) {
@@ -27,6 +33,8 @@ function mapFromMapToObject(map) {
         dataAsObject[key] = [dataAsObject[key]]
       }
       dataAsObject[key].push(value)
+    } else if (includes(value, ',')) {
+      dataAsObject[key] = value.split(',')
     } else {
       dataAsObject[key] = value
     }
@@ -40,15 +48,17 @@ function getDataFromForm(formElement) {
   return mapFromMapToObject(data)
 }
 
-function loadGoogleMapsAPI(mapAPILoadedHandler) {
+const mapsSrc = '//maps.googleapis.com/maps/api/js'
 
-  const mapsSrc = '//maps.googleapis.com/maps/api/js'
+function isGoogleMapsAPILoaded() {
+  return document.querySelector(`script[src^="${mapsSrc}"]`)? true : false
+}
+
+function loadGoogleMapsAPI(mapAPILoadedHandler) {
   const mapAPIEl = document.createElement('script')
   mapAPIEl.src = `${mapsSrc}?key=${googleMapsKey}`
 
-  const isLoaded = document.querySelector(`script[src^="${mapsSrc}"]`)? true : false
-
-  if (isLoaded) {
+  if (isGoogleMapsAPILoaded()) {
     return
   }
 
@@ -66,9 +76,11 @@ function loadAllItems() {
 }
 
 export {
+  countGroupCompleteness,
   buildURL,
   getDataFromForm,
   loadGoogleMapsAPI,
   loadAllItems,
   mapFromMapToObject,
+  isGoogleMapsAPILoaded,
 }

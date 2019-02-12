@@ -63,7 +63,7 @@ export const attributeSettings = {
     label: 'Service Type'
   },
   last_updated: {
-    groups: ['details'],
+    groups: ['edit-details'],
   },
   alternative_name: {
     groups: [],
@@ -73,7 +73,7 @@ export const attributeSettings = {
     label: 'Program webpage',
   },
   appointment_required: {
-    groups: ['requirements'],
+    groups: ['requirements', 'appointment-required'],
     order: [1],
     label: 'Appointment required?',
   },
@@ -308,6 +308,8 @@ const additionalTransforms = {
   },
   last_updated: formatDateString,
   description: cleanStrings,
+  agency_name: cleanStrings,
+  name: cleanStrings,
   physical_address: (data) => ( (isCityCrowded(data) && splitByCity(data)) || data )
 }
 // These next few functions are unfortunate...this can definitely be

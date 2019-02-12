@@ -8,15 +8,17 @@ import { getDataFromForm } from '../utils'
 import { groupedSettings } from '../data-mapper'
 import { categories } from '../constants'
 
-import FormCheck from './form-check'
+import FormCheck, { Checkbox } from './form-check'
 import FormGroupInput from './form-group-input'
-import FormGroupSelect from './form-group-select'
+import FormGroupSelect, { Select } from './form-group-select'
 
 class SearchFilters extends Component {
   constructor(props) {
     super(props)
 
     // this.state.resultsCount = props.resultsCount
+    this.handleChange.bind(this)
+    this.clearFilters.bind(this)
   }
   componentDidMount() {
     this.searchFiltersForm
@@ -57,10 +59,16 @@ class SearchFilters extends Component {
     this.props.updateFilters(filters)
   }
 
+  clearFilters() {
+    this.props.updateFilters({})
+  }
+
   render( { filters } ) {
     return (
 <form className="card border-success" id="search-filters--form" ref={searchFiltersForm => this.searchFiltersForm = searchFiltersForm}>
-  <h5 className="card-header bg-transparent border-success"><strong>Filter</strong></h5>
+  <div className="card-header bg-transparent border-success">
+    <strong>Filters</strong>
+  </div>
   <div className="card-body search-filters--filters">
     <div className="form-group">
       {
@@ -96,11 +104,13 @@ class SearchFilters extends Component {
       attribute = "zip-code"
       label = "Zip Code"
       placeholder = "77000"
+      value = { filters['zip-code'] }
     />
     <FormGroupSelect
       attribute = "distance"
       label = "Radius"
       placeholder = "Select a Distance"
+      value = { filters['distance'] }
       options = {
         [5, 10, 25, 50, 100].map(distance => ({ value: distance, label: `${distance} miles` }))
       }
@@ -110,6 +120,7 @@ class SearchFilters extends Component {
       attribute = "income-eligibility"
       label = "Income Eligibility"
       placeholder = "Select an AMI"
+      value = { filters['income-eligibility'] }
       options = {
         [80, 110, 140].map(percent => ({ value: percent, label: `${percent}%` }))
       }
@@ -118,6 +129,7 @@ class SearchFilters extends Component {
       attribute = "immigration-status"
       label = "Immigration Status"
       placeholder = "Select an Immigration Status"
+      value = { filters['immigration-status'] }
       options = {
         ['US Citizen', 'Other'].map(label => ({ value: label, label }))
       }
@@ -126,14 +138,16 @@ class SearchFilters extends Component {
       attribute = "immigrant-accessibility"
       label = "Immigrant Accessibility Profile"
       placeholder = "Select Completeness"
+      value = { `${filters['immigrant-accessibility']}` }
       options = {
-        [0, 1, 2, 3, 4, 5].map(completeness => ({ value: completeness, label: `${completeness}+` }))
+        ['0', '1', '2', '3', '4', '5'].map(completeness => ({ value: completeness, label: `${completeness}+` }))
       }
     />
     <FormGroupSelect
       attribute = "languages"
       label = "Program/Service Languages"
       placeholder = "Select a Language"
+      value = { filters['languages'] }
       options = {
         [
           'English',
@@ -149,58 +163,71 @@ class SearchFilters extends Component {
     <hr/>
     <div className="form-group">
       <p>Open</p>
-      <FormCheck attribute="open" label="Now"/>
+      <FormCheck
+        attribute="open"
+        label="Now"
+        value = "now"
+        checked = { includes(filters['open'], "now") }
+      />
       <div className="form-inline">
-        <input className="form-check-input"
-          type="checkbox"
-          value="filter-schedule"
-          id="filter-schedule"
-          name="open"
+        <Checkbox
+          attribute = "open"
+          value = "filter-schedule"
+          checked = { includes(filters['open'], "filter-schedule") }
         />
         <label className="form-check-label" for="filter-schedule">
           <input type="time" name="filter-schedule-time" className="form-control"/>
-          <select className="form-control" name="filter-schedule-day">
-            <option value="monday">Monday</option>
-            <option value="tuesday">Tuesday</option>
-            <option value="wednesday">Wednesday</option>
-            <option value="thursday">Thursday</option>
-            <option value="friday">Friday</option>
-            <option value="saturday">Saturday</option>
-            <option value="sunday">Sunday</option>
-          </select>
+          <FormGroupSelect
+            attribute = "filter-schedule-day"
+            placeholder = "Day of Week"
+            value = { filters['filter-schedule-day'] }
+            options = {
+              [
+                'Monday',
+                'Tuesday',
+                'Wednesday',
+                'Thursday',
+                'Friday',
+                'Saturday',
+                'Sunday',
+              ].map( label => ({ value: label.toLowerCase(), label }))
+            }
+          />
         </label>
       </div>
     </div>
     <div className="form-group">
       <p>Requires Appointment</p>
       <div className="form-check form-check-inline">
-        <input
-          className="form-check-input"
-          type="checkbox"
-          value="Yes"
-          id="Appointment-Yes"
-          name="requires-appointment"
+        <Checkbox
+          value = "Yes"
+          attribute = "requires-appointment"
+          checked = { includes(filters['requires-appointment'], "Yes") }
         />
-        <label className="form-check-label" for="Appointment-Yes">
+        <label className="form-check-label" for="filter-requires-appointment-yes">
           Yes
         </label>
       </div>
       <div className="form-check form-check-inline">
-        <input
-          className="form-check-input"
-          type="checkbox"
-          value="No"
-          id="Appointment-No"
-          name="requires-appointment"
+        <Checkbox
+          value = "No"
+          attribute = "requires-appointment"
+          checked = { includes(filters['requires-appointment'], "No") }
         />
-        <label className="form-check-label" for="Appointment-No">
+        <label className="form-check-label" for="filter-requires-appointment-no">
           No
         </label>
       </div>
     </div>
   </div>
   <div className="card-footer bg-transparent border-success">
-    <input type="submit" className="btn btn-success" value="Filter"/>
+    <input type="submit" className="btn btn-success" value="Filter" hidden/>
+    <input
+      type="button"
+      className="btn btn-outline-success btn-sm float-right"
+      value="Clear Filters"
+      onClick={this.clearFilters.bind(this)}
+    />
   </div>
 </form>
 )
