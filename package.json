@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "parcel *.html",
-    "build": "parcel build *.html --public-url /needhouwebsite-redesign/",
+    "build": "parcel build *.html --public-url /",
     "ghpages": "./scripts/deploy-gh-pages"
   },
   "author": "",
