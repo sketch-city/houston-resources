@@ -67,7 +67,7 @@ class DetailsMarkup extends Component {
       <div className={this.state.minimize? 'minimize' : ''}>
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href={ buildURL('/index.html') }>Home</a></li>
+          <li class="breadcrumb-item"><a href="https://needhou.org">Home</a></li>
           <li class="breadcrumb-item"><a href={ buildURL('/search.html') }>Search</a></li>
           <li class="breadcrumb-item active" aria-current="page">Program</li>
         </ol>

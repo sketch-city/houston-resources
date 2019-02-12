@@ -8,7 +8,7 @@ export default () => {
   return (<div className="container-fluid">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href={ buildURL('/index.html') }>Home</a></li>
+        <li class="breadcrumb-item"><a href="https://needhou.org">Home</a></li>
         <li class="breadcrumb-item active" aria-current="page">Search</li>
       </ol>
     </nav>
