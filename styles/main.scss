@@ -76,7 +76,7 @@ main {
     .search-filters--filters {
       overflow-y: auto;
       overflow-x: hidden;
-      max-height: calc(100vh - 240px);
+      max-height: calc(100vh - 300px);
     }
   }
 
@@ -111,7 +111,7 @@ main {
 }
 
 footer {
-  margin-top: 50px;
+  margin-top: 14px;
 }
 
 .category {

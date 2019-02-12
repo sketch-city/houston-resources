@@ -5,7 +5,7 @@ import SearchFilters from './search-filters'
 import { buildURL } from '../utils'
 
 export default () => {
-  return (<div className="container-fluid">
+  return (<div className="container">
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="https://needhou.org">Home</a></li>
