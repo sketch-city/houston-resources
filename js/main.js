@@ -3,7 +3,7 @@ import Category from './components/category'
 import { render, h } from 'preact'
 import { loadAllItems, buildURL, fixNavURL } from './utils'
 
-loadAllItems()
+// loadAllItems()
 fixNavURL()
 
 const categoryList = document.getElementById('category-list')

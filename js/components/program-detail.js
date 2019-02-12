@@ -10,7 +10,7 @@ import LabelledInlineList from './labelled-inline-list'
 import { SearchResultList } from './search-result-list'
 
 import isEmpty from 'lodash/isEmpty'
-import { countGroupCompleteness } from '../utils'
+import { countGroupCompleteness, buildURL } from '../utils'
 
 const customRenders = {
   'agency-phone': AgencyPhone,
@@ -65,13 +65,20 @@ class DetailsMarkup extends Component {
   render({ data }) {
     return (
       <div className={this.state.minimize? 'minimize' : ''}>
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href={ buildURL('/index.html') }>Home</a></li>
+          <li class="breadcrumb-item"><a href={ buildURL('/search.html') }>Search</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Program</li>
+        </ol>
+      </nav>
         <div className="text-right profile-tools">
           <div className="custom-control custom-switch">
             <input type="checkbox" className="custom-control-input" id="toggle-missing" onClick={this.toggleMinize.bind(this)}/>
             <label className="custom-control-label float-right" for="toggle-missing">Show Missing Data</label>
           </div>
           <p className="text-muted">
-            <i>Last updated { data['edit-details'][0].item }</i>
+            <i>Last updated { (data['edit-details'] && data['edit-details'][0].item) || 'n/a' }</i>
           </p>
           <div>
             <a
