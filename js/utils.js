@@ -75,6 +75,10 @@ function loadAllItems() {
     })
 }
 
+function fixNavURL() {
+  document.querySelector('.navbar-brand').href = buildURL('/index.html')
+}
+
 export {
   countGroupCompleteness,
   buildURL,
@@ -83,4 +87,5 @@ export {
   loadAllItems,
   mapFromMapToObject,
   isGoogleMapsAPILoaded,
+  fixNavURL,
 }

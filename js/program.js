@@ -3,7 +3,7 @@ import { Provider } from 'preact-redux'
 import { searchURL } from './constants'
 import axios from 'axios'
 
-import { loadGoogleMapsAPI, isGoogleMapsAPILoaded } from './utils'
+import { loadGoogleMapsAPI, isGoogleMapsAPILoaded, fixNavURL } from './utils'
 import { handleDataFromAPIToView } from './data-mapper'
 
 import searchFilterStore, { initialState } from './search-filter-store'
@@ -11,6 +11,8 @@ import searchFilterStore, { initialState } from './search-filter-store'
 import ProgramDetail from './components/program-detail'
 
 let mapObject
+
+fixNavURL()
 
 const programResultContainer = document.getElementById('program-result-container')
 

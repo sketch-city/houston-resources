@@ -4,7 +4,7 @@ import { Provider, connect } from 'preact-redux'
 import pickBy from 'lodash/pickBy'
 import isEmpty from 'lodash/isEmpty'
 
-import { loadAllItems, mapFromMapToObject, buildURL } from './utils'
+import { loadAllItems, mapFromMapToObject, buildURL, fixNavURL } from './utils'
 
 import searchFilterStore from './search-filter-store'
 
@@ -12,6 +12,7 @@ import Search from './components/search'
 
 const container = document.getElementById('container')
 
+fixNavURL()
 loadAllItems()
 
 function handlePageLoaded() {
