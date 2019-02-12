@@ -20,7 +20,7 @@ function countGroupCompleteness(data, groupName = 'immigrant-accessibility') {
 function buildURL(pathnameWithHTML) {
   const hostnameRegex = /^(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\-]*[a-zA-Z0-9])\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\-]*[A-Za-z0-9])$/
   if (location.host.search(hostnameRegex) === 0) {
-    return `/${location.pathname.split('/')[1]}/${pathnameWithHTML.replace(/(^\/)/, '').replace('.html', '').replace(/index$/, '')}`
+    return `${location.host}/${pathnameWithHTML.replace(/(^\/)/, '').replace('.html', '').replace(/index$/, '')}`
   }
   return pathnameWithHTML
 }
