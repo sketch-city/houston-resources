@@ -67,9 +67,17 @@ class SearchFilters extends Component {
     return (
 <form className="card border-success" id="search-filters--form" ref={searchFiltersForm => this.searchFiltersForm = searchFiltersForm}>
   <div className="card-header bg-transparent border-success">
-    <strong>Filters</strong>
+    <h6 className="mb-0">Filters</h6>
+    <div className="filter-nav">
+      <a href="#services">Services</a>
+      <a href="#keywords-and-categories">Keywords</a>
+      <a href="#coverage">Coverage</a>
+      <a href="#eligibility">Eligibility</a>
+      <a href="#schedule">Schedule</a>
+    </div>
   </div>
   <div className="card-body search-filters--filters">
+    <a name="services">Services</a>
     <div className="form-group">
       {
         groupedSettings['service-checks']
@@ -83,6 +91,7 @@ class SearchFilters extends Component {
       }
     </div>
     <hr/>
+    <a name="keywords-and-categories">Keywords</a>
     <FormGroupInput
       attribute = "keywords"
       label = "Keywords"
@@ -100,6 +109,7 @@ class SearchFilters extends Component {
       }
     />
     <hr/>
+    <a name="coverage">Coverage</a>
     <FormGroupInput
       attribute = "zip-code"
       label = "Zip Code"
@@ -116,6 +126,7 @@ class SearchFilters extends Component {
       }
     />
     <hr/>
+    <a name="eligibility">Eligibility</a>
     <FormGroupSelect
       attribute = "income-eligibility"
       label = "Income Eligibility"
@@ -161,6 +172,7 @@ class SearchFilters extends Component {
       }
     />
     <hr/>
+    <a name="schedule">Schedule</a>
     <div className="form-group">
       <p>Open</p>
       <FormCheck

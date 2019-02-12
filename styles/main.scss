@@ -71,7 +71,7 @@ main {
 
   .card {
     position: fixed;
-    max-width: calc(100% / 3 - 50px);
+    width: calc(100% / 3 - 50px);
 
     .search-filters--filters {
       overflow-y: auto;
@@ -82,6 +82,18 @@ main {
 
   .form-group p:first-child {
     margin-bottom: 0;
+  }
+
+  a[name] {
+    visibility: hidden;
+    font-size: 1px;
+    margin: 0;
+  }
+
+  .filter-nav a {
+    color: $gray-600;
+    font-size: 0.8em;
+    padding-right: 0.4em;
   }
 }
 
