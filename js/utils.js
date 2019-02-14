@@ -76,7 +76,7 @@ function loadAllItems() {
 }
 
 function fixNavURL() {
-  document.querySelector('.navbar-brand').href = buildURL('/index.html')
+  document.querySelector('.navbar-brand').href = buildURL(`${location.protocol}//${location.host}/index.html`)
 }
 
 export {

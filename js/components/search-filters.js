@@ -37,13 +37,13 @@ class SearchFilters extends Component {
       //   this.state.resultsCount = (document.querySelectorAll(`[data-jets*="${searchTerm}"]`).length || this.props.resultsCount)
       // },
     })
-    this.jetsSearch.search(this.props.filters.keywords)
   }
 
   componentWillReceiveProps(nextProps) {
     // this.setState({
     //   resultsCount: nextProps.resultsCount
     // })
+    if (!nextProps.filters.keywords) { return }
     this.jetsSearch.search(nextProps.filters.keywords)
   }
 
@@ -249,7 +249,7 @@ class SearchFilters extends Component {
 export default connect(
   (state) => ({
     filters: ((state && state.get('filters')) || {}),
-    // resultsCount: ((state && state.get('filteredResults')) || []).length,
+    resultsCount: ((state && state.get('filteredResults')) || []).length,
   }), {
     updateFilters: (content) => ({
       type: 'FILTERS_CHANGE',
