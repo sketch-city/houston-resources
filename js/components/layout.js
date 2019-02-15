@@ -59,7 +59,19 @@ const Layout = ({ crumbs, children }) => {
         { children }
       </main>
       <footer className="container">
-        <p className="mb-0"><small>The NeedHou Houston Social Services Database is a product of HILSC in partnership with January Advisors.</small></p>
+        <p className="mb-0">
+          <small>
+            The NeedHou Houston Social Services Database is a product of <a
+              href="https://www.houstonimmigration.org/"
+              target="_blank">
+                <abbr title="Houston Immigration Legal Services Collaborative">
+                  HILSC
+                </abbr>
+              </a> in partnership with <a
+              href="https://www.januaryadvisors.com/"
+              target="_blank">January Advisors</a>.  Only <abbr title="Access to Services Verified">A2S Verified</abbr> data has been accounted for by HILSC.
+          </small>
+        </p>
         <p><small>Have a feature request?  Found a bug?  Contact us <a href="https://www.januaryadvisors.com/submit-feedback-or-report-a-bug" target="_blank">here</a>.</small></p>
       </footer>
     </div>
