@@ -12,7 +12,6 @@ import Search from './components/search'
 
 const container = document.getElementById('container')
 
-fixNavURL()
 loadAllItems()
 
 function handlePageLoaded() {
@@ -32,10 +31,10 @@ searchFilterStore.subscribe(() => {
 
 document.addEventListener('DOMContentLoaded', handlePageLoaded)
 
-const ConnectedSearchMain = () => (
+const ConnectedSearch = () => (
   <Provider store={ searchFilterStore }>
     <Search/>
   </Provider>
 )
 
-render(<ConnectedSearchMain/>, container)
+render(<ConnectedSearch/>, container)

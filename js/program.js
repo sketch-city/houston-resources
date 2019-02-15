@@ -8,13 +8,11 @@ import { handleDataFromAPIToView } from './data-mapper'
 
 import searchFilterStore, { initialState } from './search-filter-store'
 
-import ProgramDetail from './components/program-detail'
+import Program from './components/program'
 
 let mapObject
 
-fixNavURL()
-
-const programResultContainer = document.getElementById('program-result-container')
+const container = document.getElementById('container')
 
 axios.get(`${searchURL}${(location.search || '')}`)
   .then(({ data }) => {
@@ -74,10 +72,10 @@ function initMap() {
   return map
 }
 
-const Program = () => (
+const ConnectedProgram = () => (
   <Provider store={ searchFilterStore }>
-    <ProgramDetail/>
+    <Program/>
   </Provider>
 )
 
-render(<Program/>, programResultContainer)
+render(<ConnectedProgram/>, container)

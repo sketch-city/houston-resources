@@ -7,8 +7,12 @@ $hilsc-red:  #E8463A;
 
 @import "node_modules/bootstrap/scss/bootstrap";
 
-body {
+.has-navbar {
   margin-top: 56px;
+}
+
+.has-navbar.has-crumbs {
+  margin-top: 112px;
 }
 
 .labelled-item--label {

@@ -1,12 +1,8 @@
-import { categories } from './constants'
-import Category from './components/category'
 import { render, h } from 'preact'
-import { loadAllItems, buildURL, fixNavURL } from './utils'
+import { loadAllItems } from './utils'
 
-// loadAllItems()
-fixNavURL()
+import Main from './components/main'
 
-const categoryList = document.getElementById('category-list')
-render((<div className="row">{categories.map(Category)}</div>), categoryList)
+const container = document.getElementById('container')
 
-document.querySelector('form').action = buildURL('/search.html')
+render(<Main/>, container)

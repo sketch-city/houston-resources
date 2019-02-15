@@ -1,24 +1,30 @@
 import { h } from 'preact'
 import SearchResultList from './search-result-list'
 import SearchFilters from './search-filters'
+import Layout from './layout'
 
 import { buildURL } from '../utils'
 
 export default () => {
-  return (<div className="container">
-    <nav aria-label="breadcrumb">
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="https://needhou.org">Home</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Search</li>
-      </ol>
-    </nav>
-    <div className="row">
-      <div className="col-8" id="search-result-container">
-        <SearchResultList/>
+  return (
+    <Layout crumbs={[
+        {
+          label: 'Home',
+          link: buildURL(`${location.protocol}//${location.host}/index.html`)
+        }, {
+          label: 'Search',
+        }
+      ]}>
+      <div className="container">
+        <div className="row">
+          <div className="col-8" id="search-result-container">
+            <SearchResultList/>
+          </div>
+          <div className="col" id="search-filters-container">
+            <SearchFilters/>
+          </div>
+        </div>
       </div>
-      <div className="col" id="search-filters-container">
-        <SearchFilters/>
-      </div>
-    </div>
-  </div>)
+    </Layout>
+  )
 }

@@ -2,6 +2,7 @@ import { h, Component } from 'preact'
 import { connect } from 'preact-redux'
 import LabelledItem from './labelled-item'
 import LabelledLink from './labelled-link'
+import Layout from './layout'
 
 import AgencyPhone from './agency-phone'
 import Name from './name'
@@ -65,13 +66,6 @@ class DetailsMarkup extends Component {
   render({ data }) {
     return (
       <div className={this.state.minimize? 'minimize' : ''}>
-      <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="https://needhou.org">Home</a></li>
-          <li class="breadcrumb-item"><a href={ buildURL('/search.html') }>Search</a></li>
-          <li class="breadcrumb-item active" aria-current="page">Program</li>
-        </ol>
-      </nav>
         <div className="text-right profile-tools">
           <div className="custom-control custom-switch">
             <input type="checkbox" className="custom-control-input" id="toggle-missing" onClick={this.toggleMinize.bind(this)}/>
@@ -165,10 +159,32 @@ const ProgramDetail = ({ program: data, programsByAgency }) => {
   )
 }
 
+const Program = (props) => (
+  <Layout crumbs={[
+        {
+          label: 'Home',
+          link: buildURL(`${location.protocol}//${location.host}/index.html`),
+        }, {
+          label: 'Search',
+          link: buildURL(`${location.protocol}//${location.host}/search.html`),
+        }, {
+          label: 'Program',
+        }
+      ]}>
+    <div className="container">
+      <div className="row">
+        <div className="col">
+          <ProgramDetail {...props}/>
+        </div>
+      </div>
+    </div>
+  </Layout>
+)
+
 export default connect((state) => {
   const agencyId = (state && state.get('program').data.identifiers.find(({ attribute }) => attribute === 'agency-id').item)
   return {
     program: ((state && state.get('program').data) || { data: {} }),
     programsByAgency: ((state && state.get('programsByAgency').get(agencyId)) || []),
   }
-})( ProgramDetail )
+})( Program )

@@ -174,7 +174,7 @@ class SearchFilters extends Component {
     <hr/>
     <a name="schedule">Schedule</a>
     <div className="form-group">
-      <label>Open</label>
+      <label className="d-block">Open</label>
       <FormCheck
         attribute="open"
         label="Now"
@@ -209,7 +209,7 @@ class SearchFilters extends Component {
       </div>
     </div>
     <div className="form-group">
-      <label>Requires Appointment</label>
+      <label className="d-block">Requires Appointment</label>
       <div className="form-check form-check-inline">
         <Checkbox
           value = "Yes"
