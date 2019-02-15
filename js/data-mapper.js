@@ -229,6 +229,7 @@ export const attributeSettings = {
   schedule: {
     groups: ['schedule', 'immigrant-accessibility'],
     label: ['Program/Service Hours'],
+    order: [0],
   },
   service_cost: {
     groups: [],

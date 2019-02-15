@@ -3,22 +3,26 @@ import { connect } from 'preact-redux'
 import LabelledItem from './labelled-item'
 import LabelledLink from './labelled-link'
 import Layout from './layout'
+import Schedule from './schedule'
 
 import AgencyPhone from './agency-phone'
 import Name from './name'
 import AgencyName from './agency-name'
-import LabelledInlineList from './labelled-inline-list'
 import { SearchResultList } from './search-result-list'
 
 import isEmpty from 'lodash/isEmpty'
+import isObject from 'lodash/isObject'
+import compact from 'lodash/compact'
+import negate from 'lodash/negate'
+
 import { countGroupCompleteness, buildURL } from '../utils'
 
 const customRenders = {
   'agency-phone': AgencyPhone,
   'name': Name,
   'agency-name': AgencyName,
-  'language-arr': LabelledInlineList,
   'transportation': LabelledLink,
+  'schedule': Schedule,
 }
 
 function renderProperty(property) {
@@ -28,7 +32,13 @@ function renderProperty(property) {
 }
 
 function hasValues(data) {
-  return data.find(({item}) => !(isEmpty(item)))
+  return data.find(({item}) => (
+    !isEmpty(item) && !(isObject(item) && !hasValuesAsObject(item))
+  ))
+}
+
+function hasValuesAsObject(data) {
+  return !isEmpty(compact(Object.values(data).map(negate(isEmpty))))
 }
 
 const CompletenessMarkup = ({ data }) => {
@@ -135,7 +145,7 @@ class DetailsMarkup extends Component {
           { data['services-offered'].map(renderProperty) }
         </div>
         <div className="list-group">
-          <h4>Schedule</h4>
+          <h4 className={ hasValues(data['schedule'])? '':'hideable' }>Schedule</h4>
           { data['schedule'].map(renderProperty) }
         </div>
         <div className="list-group">
@@ -166,7 +176,7 @@ const Program = (props) => (
           link: buildURL(`${location.protocol}//${location.host}/index.html`),
         }, {
           label: 'Search',
-          link: buildURL(`${location.protocol}//${location.host}/search.html`),
+          link: buildURL(`${location.protocol}//${location.host}/search.html?service-checks=A2S+Verified`),
         }, {
           label: 'Program',
         }

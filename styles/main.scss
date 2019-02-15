@@ -114,6 +114,10 @@ main {
   font-size: 0.9em;
 }
 
+.profile-tools + .list-group {
+  margin-top: 1.5em;
+}
+
 footer {
   margin-top: 14px;
 }
@@ -231,4 +235,12 @@ label,
 #program-result-container [data-groups~=immigrant-accessibility]::before  {
   content: '*';
   margin-left: -7px;
+}
+
+.program--schedule {
+  margin-bottom: 0.5em;
+
+  [data-attribute$=closed] {
+    color: $gray-500;
+  }
 }

@@ -35,10 +35,14 @@ function getProgramsForAgency(agencyId) {
 
 function updateMap(map, program) {
   if (program.data.location.find(({ attribute }) => attribute === 'latitude')) {
-    const programLatLng = {
-      lat: parseFloat(program.data.location.find(({ attribute }) => attribute === 'latitude').item),
-      lng: parseFloat(program.data.location.find(({ attribute }) => attribute === 'longitude').item),
+    const lat = parseFloat(program.data.location.find(({ attribute }) => attribute === 'latitude').item)
+    const lng = parseFloat(program.data.location.find(({ attribute }) => attribute === 'longitude').item)
+
+    if (lat === 0 && lng === 0) {
+      return
     }
+
+    const programLatLng = { lat, lng }
     const marker = new google.maps.Marker({
       position: programLatLng,
       map,

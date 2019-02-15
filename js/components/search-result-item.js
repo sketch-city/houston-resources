@@ -5,13 +5,11 @@ import LabelledItem from './labelled-item'
 import AgencyPhone from './agency-phone'
 import Name from './name'
 import AgencyName from './agency-name'
-import LabelledInlineList from './labelled-inline-list'
 
 const customRenders = {
   'agency-phone': AgencyPhone,
   'name': Name,
   'agency-name': AgencyName,
-  'language-arr': LabelledInlineList,
 }
 
 function renderProperty(property) {

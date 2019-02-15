@@ -4,6 +4,7 @@ import {
 
 import isArray from 'lodash/isArray'
 import isEmpty from 'lodash/isEmpty'
+import isString from 'lodash/isString'
 import includes from 'lodash/includes'
 
 import { searchURL } from './constants'
@@ -75,9 +76,13 @@ function loadAllItems() {
     })
 }
 
-function fixNavURL() {
-  document.querySelector('.navbar-brand').href = buildURL(`${location.protocol}//${location.host}/index.html`)
+function isLink(string) {
+  const isLinkRegex = /^(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)$/
+  if (!isString(string)) { return }
+
+  return string.match(isLinkRegex)
 }
+
 
 export {
   countGroupCompleteness,
@@ -87,5 +92,5 @@ export {
   loadAllItems,
   mapFromMapToObject,
   isGoogleMapsAPILoaded,
-  fixNavURL,
+  isLink,
 }
