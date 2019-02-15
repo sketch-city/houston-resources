@@ -1,6 +1,6 @@
 import { h } from 'preact'
 
-const FormGroupInput = ({ label, attribute, value = '', placeholder = '', type = 'text' }) => (
+const FormGroupInput = ({ label, attribute, value = '', placeholder = '', type = 'text', disabled }) => (
   <div className="form-group">
     <label for={`filter-${attribute}`}>{label}</label>
     <input
@@ -10,6 +10,7 @@ const FormGroupInput = ({ label, attribute, value = '', placeholder = '', type =
       id={`filter-${attribute}`}
       placeholder={ placeholder }
       value={ value }
+      disabled = { disabled }
     />
   </div>
 )

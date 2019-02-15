@@ -2,7 +2,7 @@ import { h } from 'preact'
 import kebabCase from 'voca/kebab_case'
 
 
-export const Checkbox = ({ label, attribute, value, checked, dataValue }) => {
+export const Checkbox = ({ label, attribute, value, checked, dataValue, disabled }) => {
 
   let isCheckedProp = {}
 
@@ -17,12 +17,13 @@ export const Checkbox = ({ label, attribute, value, checked, dataValue }) => {
     type="checkbox"
     value={ value || label }
     name={ attribute }
+    disabled = { disabled }
     id={`filter-${attribute}-${kebabCase(value || label)}`}
     {...isCheckedProp}
   />)
 }
 
-const FormCheck = ({ label, attribute, value, checked, dataValue }) => (
+const FormCheck = ({ label, attribute, value, checked, dataValue, disabled }) => (
   <div className="form-check">
     <Checkbox
       label = { label }
@@ -30,6 +31,7 @@ const FormCheck = ({ label, attribute, value, checked, dataValue }) => (
       value = { value }
       checked = { checked }
       dataValue = { dataValue }
+      disabled = { disabled }
     />
     <label
       className="form-check-label"

@@ -121,6 +121,7 @@ class SearchFilters extends Component {
       label = "Radius"
       placeholder = "Select a Distance"
       value = { filters['distance'] }
+      disabled = "disabled"
       options = {
         [5, 10, 25, 50, 100].map(distance => ({ value: distance, label: `${distance} miles` }))
       }
@@ -179,17 +180,24 @@ class SearchFilters extends Component {
         attribute="open"
         label="Now"
         value = "now"
+        disabled = "disabled"
         checked = { includes(filters['open'], "now") }
       />
       <div className="form-inline">
         <Checkbox
           attribute = "open"
           value = "filter-schedule"
+          disabled = "disabled"
           checked = { includes(filters['open'], "filter-schedule") }
         />
         <label className="form-check-label" for="filter-schedule">
-          <input type="time" name="filter-schedule-time" className="form-control"/>
+          <input
+            type="time"
+            name="filter-schedule-time"
+            disabled = "disabled"
+            className="form-control"/>
           <FormGroupSelect
+            disabled = "disabled"
             attribute = "filter-schedule-day"
             placeholder = "Day of Week"
             value = { filters['filter-schedule-day'] }

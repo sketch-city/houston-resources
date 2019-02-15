@@ -1,9 +1,10 @@
 import { h } from 'preact'
 
-export const Select = ({ label, attribute, value: selectValue = '', placeholder = '', options = [], children }) => (
+export const Select = ({ label, attribute, value: selectValue = '', placeholder = '', options = [], disabled, children }) => (
   <select
     name={ attribute }
     className="form-control"
+    disabled = { disabled }
     id={`filter-${attribute}`}>
     <option value="">{placeholder}</option>
     {
@@ -23,7 +24,7 @@ export const Select = ({ label, attribute, value: selectValue = '', placeholder 
 )
 
 
-const FormGroupSelect = ({ label, attribute, value: selectValue = '', placeholder = '', options = [], children }) => (
+const FormGroupSelect = ({ label, attribute, value: selectValue = '', placeholder = '', options = [], disabled, children }) => (
   <div className="form-group">
     <label for={`filter-${attribute}`}>{label}</label>
     { children }
@@ -32,6 +33,7 @@ const FormGroupSelect = ({ label, attribute, value: selectValue = '', placeholde
       attribute = { attribute }
       placeholder = { placeholder }
       options = { options }
+      disabled = { disabled }
       value = { selectValue }
     />
   </div>

@@ -66,7 +66,7 @@ class DetailsMarkup extends Component {
   }
   render({ data }) {
     return (
-      <div className={this.state.minimize? 'minimize' : ''}>
+      <div>
         <div className="text-right profile-tools">
           <div className="custom-control custom-switch">
             <input type="checkbox" className="custom-control-input" id="toggle-missing" onClick={this.toggleMinize.bind(this)}/>
@@ -84,6 +84,7 @@ class DetailsMarkup extends Component {
               </a>
           </div>
         </div>
+      <div className={this.state.minimize? 'minimize' : ''}>
         <div className="list-group" name="summary">
           { data.summary.map(renderProperty) }
           <CompletenessMarkup data = {data} />
@@ -144,7 +145,7 @@ class DetailsMarkup extends Component {
           { data['services-and-policies'].map(renderProperty) }
         </div>
       </div>
-    )
+    </div>)
   }
 }
 
