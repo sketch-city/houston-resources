@@ -3,6 +3,7 @@ import LabelledItem from './labelled-item'
 
 import titleCase from 'voca/title_case'
 import isEmpty from 'lodash/isEmpty'
+import { hasValuesAsObject } from '../utils'
 
 import { setHours, setMinutes, format } from 'date-fns'
 
@@ -13,6 +14,9 @@ const timeReformat = (timeString) => {
 }
 
 const Schedule = (props) => {
+
+  if (!hasValuesAsObject(props.item)) { return }
+
   const daysOfTheWeek = [
     'sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday',
   ]

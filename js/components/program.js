@@ -10,12 +10,12 @@ import Name from './name'
 import AgencyName from './agency-name'
 import { SearchResultList } from './search-result-list'
 
-import isEmpty from 'lodash/isEmpty'
-import isObject from 'lodash/isObject'
-import compact from 'lodash/compact'
-import negate from 'lodash/negate'
-
-import { countGroupCompleteness, buildURL } from '../utils'
+import {
+  countGroupCompleteness,
+  buildURL, 
+  hasValues,
+  hasValuesAsObject,
+} from '../utils'
 
 const customRenders = {
   'agency-phone': AgencyPhone,
@@ -31,15 +31,6 @@ function renderProperty(property) {
   return <Component {...property}/>
 }
 
-function hasValues(data) {
-  return data.find(({item}) => (
-    !isEmpty(item) && !(isObject(item) && !hasValuesAsObject(item))
-  ))
-}
-
-function hasValuesAsObject(data) {
-  return !isEmpty(compact(Object.values(data).map(negate(isEmpty))))
-}
 
 const CompletenessMarkup = ({ data }) => {
   const options = [
@@ -93,7 +84,7 @@ class DetailsMarkup extends Component {
               </a>
           </div>
         </div>
-        <div className="list-group">
+        <div className="list-group" name="summary">
           { data.summary.map(renderProperty) }
           <CompletenessMarkup data = {data} />
         </div>

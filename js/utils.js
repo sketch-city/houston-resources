@@ -6,6 +6,9 @@ import isArray from 'lodash/isArray'
 import isEmpty from 'lodash/isEmpty'
 import isString from 'lodash/isString'
 import includes from 'lodash/includes'
+import isObject from 'lodash/isObject'
+import compact from 'lodash/compact'
+import negate from 'lodash/negate'
 
 import { searchURL } from './constants'
 import axios from 'axios'
@@ -84,6 +87,16 @@ function isLink(string) {
 }
 
 
+function hasValues(data) {
+  return data.find(({item}) => (
+    !isEmpty(item) && !(isObject(item) && !hasValuesAsObject(item))
+  ))
+}
+
+function hasValuesAsObject(data) {
+  return !isEmpty(compact(Object.values(data).map(negate(isEmpty))))
+}
+
 export {
   countGroupCompleteness,
   buildURL,
@@ -93,4 +106,6 @@ export {
   mapFromMapToObject,
   isGoogleMapsAPILoaded,
   isLink,
+  hasValues,
+  hasValuesAsObject,
 }
