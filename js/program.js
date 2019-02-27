@@ -33,23 +33,33 @@ function getProgramsForAgency(agencyId) {
     })
 }
 
-function updateMap(map, program) {
+function getLatLng(program) {
   if (program.data.location.find(({ attribute }) => attribute === 'latitude')) {
     const lat = parseFloat(program.data.location.find(({ attribute }) => attribute === 'latitude').item)
     const lng = parseFloat(program.data.location.find(({ attribute }) => attribute === 'longitude').item)
 
-    if (lat === 0 && lng === 0) {
-      return
+    if (!lat || !lng) {
+      return false
     }
 
-    const programLatLng = { lat, lng }
-    const marker = new google.maps.Marker({
-      position: programLatLng,
-      map,
-    })
-
-    map.panTo(programLatLng)
+    return { lat, lng }
   }
+
+  return false
+}
+
+function updateMap(map, program) {
+  if (!getLatLng(program)) {
+    return
+  }
+  const { lat, lng } = getLatLng(program)
+  const programLatLng = { lat, lng }
+  const marker = new google.maps.Marker({
+    position: programLatLng,
+    map,
+  })
+
+  map.panTo(programLatLng)
 }
 
 searchFilterStore.subscribe(() => {
@@ -64,10 +74,14 @@ searchFilterStore.subscribe(() => {
 
 function initMap() {
   const houston = { lat: 29.76, lng: -95.37 }
-  const map = new google.maps.Map(document.getElementById('map'), { zoom: 10, center: houston })
 
   if (searchFilterStore.getState()) {
     const programState = searchFilterStore.getState().get('program')
+    if (!getLatLng(programState)) {
+      return
+    }
+    const map = new google.maps.Map(document.getElementById('map'), { zoom: 10, center: houston })
+    document.getElementById('map').style.height = '400px'
     updateMap(map, programState)
   }
 
