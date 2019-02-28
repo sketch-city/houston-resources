@@ -65,7 +65,7 @@ $hilsc-red:  #E8463A;
     background: $white;
 
     &::before {
-      content: 'No results';
+      content: 'No matching programs.';
       position: absolute;
       top: 10px;
       left: 36px;
