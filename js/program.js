@@ -81,11 +81,10 @@ function initMap() {
       return
     }
     const map = new google.maps.Map(document.getElementById('map'), { zoom: 10, center: houston })
+    mapObject = map
     document.getElementById('map').style.height = '400px'
     updateMap(map, programState)
   }
-
-  mapObject = map
 
   return map
 }

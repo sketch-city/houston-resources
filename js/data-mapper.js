@@ -262,7 +262,7 @@ function cleanStrings(string) {
 }
 
 function getLabelAndPhone(string, index) {
-  const PHONE_REGEX = /(\+?( |-|\.)?\d{1,2}( |-|\.)?)?(\(?\d{3}\)?|\d{3})( |-|\.)?(\d{3}( |-|\.)?\d{4})/g
+  const PHONE_REGEX = /(\+?( |-|\.)?\d{1,2}( |-|\.)?)?(\(?\d{3}\)?|\d{3})( |-|\.)?(\d{3}( |-|\.)?\d{4})(([xX]|( x ))\d{1,4})?/g
   const phone = string.match(PHONE_REGEX)
   if (!phone || !phone.length) {
     return {}
