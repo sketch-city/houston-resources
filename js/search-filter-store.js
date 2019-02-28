@@ -1,12 +1,9 @@
 import { createStore } from 'redux'
-import { fromJS, Map } from 'immutable'
+import { fromJS } from 'immutable'
 
 import isEmpty from 'lodash/isEmpty'
-import isNil from 'lodash/isNil'
 import isEqual from 'lodash/isEqual'
-import isNumber from 'lodash/isNumber'
 import includes from 'lodash/includes'
-import intersection from 'lodash/intersection'
 import difference from 'lodash/difference'
 
 import { countGroupCompleteness } from './utils'
@@ -19,6 +16,7 @@ export const initialState = fromJS({
   },
   filteredResults: [],
   programsByAgency: {},
+  isResultsLoading: true,
 })
 
 function hasServiceCheck(serviceChecks, checks) {
@@ -107,6 +105,11 @@ function filterReducer(currentState = initialState, action) {
               .mergeDeep({
                 programsByAgency: action.programsByAgency,
               })
+      break
+
+    case 'RESULTS_LOADING_STATE':
+      return currentState
+              .set('isResultsLoading', action.isLoading)
       break
   }
 }

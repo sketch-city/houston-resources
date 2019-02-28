@@ -13,6 +13,9 @@ import Search from './components/search'
 const container = document.getElementById('container')
 
 loadAllItems()
+  .then(function() {
+    searchFilterStore.dispatch({ type: 'RESULTS_LOADING_STATE', isLoading: false })
+  })
 
 function handlePageLoaded() {
   const params = new URLSearchParams(location.search)
