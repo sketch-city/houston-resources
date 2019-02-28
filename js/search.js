@@ -13,8 +13,17 @@ import Search from './components/search'
 const container = document.getElementById('container')
 
 loadAllItems()
+  .then(function(items) {
+    searchFilterStore.dispatch({
+      type: 'ITEMS_CHANGE',
+      items,
+    })
+  })
   .then(function() {
-    searchFilterStore.dispatch({ type: 'RESULTS_LOADING_STATE', isLoading: false })
+    searchFilterStore.dispatch({
+      type: 'RESULTS_LOADING_STATE',
+      isLoading: false,
+    })
   })
 
 function handlePageLoaded() {
