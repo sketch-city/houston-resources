@@ -7,6 +7,13 @@ $hilsc-red:  #E8463A;
 
 @import "node_modules/bootstrap/scss/bootstrap";
 
+
+.translated-ltr {
+  .fixed-top {
+    top: 39px;
+  }
+}
+
 .has-navbar {
   margin-top: 56px;
 }

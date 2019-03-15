@@ -1,6 +1,7 @@
 import { buildURL } from '../utils'
 import { h } from 'preact'
 import isEmpty from 'lodash/isEmpty'
+import { GoogleTranslateButton } from './google-translate'
 
 const Crumbs = ({ crumbs }) => {
   if (!crumbs) {
@@ -59,6 +60,7 @@ const Layout = ({ crumbs, children }) => {
         { children }
       </main>
       <footer className="container">
+        <GoogleTranslateButton/>
         <p className="mb-0">
           <small>
             The NeedHou Houston Social Services Database is a product of <a
