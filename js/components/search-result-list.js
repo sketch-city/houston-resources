@@ -13,7 +13,12 @@ export const SearchResultList = ({ results, isLoading }) => {
   }
 
   return (<div className="list-group minimize">
-    {results.map(SearchResultItem)}
+    {results.map((item) => (
+      <SearchResultItem
+        {...item}
+        key={item.identifiers.find(({attribute}) => attribute == 'id').item}
+      />
+    ))}
   </div>)
 }
 

@@ -17,6 +17,7 @@ export const initialState = fromJS({
   filteredResults: [],
   programsByAgency: {},
   isResultsLoading: true,
+  isLoaded: false,
 })
 
 function hasServiceCheck(serviceChecks, checks) {
@@ -78,6 +79,16 @@ function filterData({ filters, items }) {
 
 function filterReducer(currentState = initialState, action) {
   switch (action.type) {
+    case 'FILTERS_LOAD':
+      return currentState
+            .set('isLoaded', true)
+            .set('filters', action.filters)
+            .set('filteredResults', filterData({
+                                      filters: action.filters,
+                                      items: currentState.get('items'),
+                                    })
+            )
+      break
     case 'FILTERS_CHANGE':
       return currentState
               .set('filters', action.filters)

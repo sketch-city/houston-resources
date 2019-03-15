@@ -1,5 +1,5 @@
 import { buildURL } from '../utils'
-import { h } from 'preact'
+import { h, Component } from 'preact'
 
 import LabelledItem from './labelled-item'
 import AgencyPhone from './agency-phone'
@@ -18,14 +18,22 @@ function renderProperty(property) {
   return <Component {...property}/>
 }
 
-const SearchResultItem = ( properties ) => (
-  <a
-    href={`${buildURL('/program.html')}?id=${properties.identifiers.find(({attribute}) => attribute == 'id').item}`}
-    className="list-group-item list-group-item-action"
-    data-coverage={ properties.coverage.map( (data) => data.item ).join(' ') }
-    data-jets={ properties.searchable }>
-    { properties.listing.map(renderProperty) }
-  </a>
-)
+class SearchResultItem extends Component {
+  shouldComponentUpdate() {
+    // do not re-render via diff:
+    return false
+  }
+  render( properties ) {
+    return (
+      <a
+        href={`${buildURL('/program.html')}?id=${properties.identifiers.find(({attribute}) => attribute == 'id').item}`}
+        className="list-group-item list-group-item-action"
+        data-coverage={ properties.coverage.map( (data) => data.item ).join(' ') }
+        data-jets={ properties.searchable }>
+        { properties.listing.map(renderProperty) }
+      </a>
+    )
+  }
+}
 
 export default SearchResultItem

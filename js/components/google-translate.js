@@ -1,11 +1,15 @@
 import { h, Component } from 'preact'
 
 export class GoogleTranslateButton extends Component {
+  shouldComponentUpdate() {
+    // do not re-render via diff:
+    return false
+  }
   componentDidMount() {
     window.googleTranslateElementInit = this.googleTranslateElementInit
   }
   googleTranslateElementInit () {
-    new window.google.translate.TranslateElement({pageLanguage: 'pt', layout: window.google.translate.TranslateElement.FloatPosition.TOP_LEFT}, 'google_translate_element')
+    new window.google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element')
   }
   render() {
     return (<div>

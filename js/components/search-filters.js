@@ -1,8 +1,9 @@
 import { h, Component } from 'preact'
 import { connect } from 'preact-redux'
-import kebabCase from 'voca/kebab_case'
 import Jets from 'jets'
 import includes from 'lodash/includes'
+import pick from 'lodash/pick'
+import isEqual from 'lodash/isEqual'
 
 import { getDataFromForm } from '../utils'
 import { groupedSettings } from '../data-mapper'
@@ -38,11 +39,13 @@ class SearchFilters extends Component {
       // },
     })
   }
-
+  shouldComponentUpdate(nextProps) {
+    // do not re-render via diff:
+    const pickKeys = ['isLoaded']
+    return !isEqual(pick(nextProps, pickKeys), pick(this.props, pickKeys))
+    return false
+  }
   componentWillReceiveProps(nextProps) {
-    // this.setState({
-    //   resultsCount: nextProps.resultsCount
-    // })
     if (!nextProps.filters.keywords) { return }
     this.jetsSearch.search(nextProps.filters.keywords)
   }
@@ -257,7 +260,7 @@ class SearchFilters extends Component {
 export default connect(
   (state) => ({
     filters: ((state && state.get('filters')) || {}),
-    resultsCount: ((state && state.get('filteredResults')) || []).length,
+    isLoaded: (state && state.get('isLoaded')) || false,
   }), {
     updateFilters: (content) => ({
       type: 'FILTERS_CHANGE',

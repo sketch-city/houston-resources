@@ -29,7 +29,7 @@ loadAllItems()
 function handlePageLoaded() {
   const params = new URLSearchParams(location.search)
   const filters = mapFromMapToObject(params)
-  searchFilterStore.dispatch({ type: 'FILTERS_CHANGE' , filters })
+  searchFilterStore.dispatch({ type: 'FILTERS_LOAD' , filters })
 }
 
 searchFilterStore.subscribe(() => {
@@ -48,5 +48,7 @@ const ConnectedSearch = () => (
     <Search/>
   </Provider>
 )
+
+require('preact/devtools')
 
 render(<ConnectedSearch/>, container)
