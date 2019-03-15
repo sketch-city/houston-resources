@@ -17,7 +17,7 @@ const Main = () => (
             <input
               type="hidden"
               name="service-checks"
-              value="A2S Verified"
+              value="HILSC Verified"
             />
             <input
               className="form-control form-success"

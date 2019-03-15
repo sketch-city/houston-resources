@@ -78,6 +78,10 @@ $hilsc-red:  #E8463A;
       left: 36px;
       z-index: -1;
     }
+
+    &.error::before {
+      content: 'Results are missing.  This may be due to slow internet. Please reload.'
+    }
   }
 }
 
@@ -249,4 +253,9 @@ label,
   [data-attribute$=closed] {
     color: $gray-500;
   }
+}
+
+footer {
+  background: $gray-100;
+  padding: 1em 0;
 }

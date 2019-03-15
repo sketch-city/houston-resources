@@ -25,6 +25,13 @@ loadAllItems()
       isLoading: false,
     })
   })
+  .catch(function() {
+    searchFilterStore.dispatch({
+      type: 'RESULTS_LOADING_STATE',
+      isLoading: false,
+      isError: true,
+    })
+  })
 
 function handlePageLoaded() {
   const params = new URLSearchParams(location.search)

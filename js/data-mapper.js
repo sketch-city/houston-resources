@@ -12,7 +12,7 @@ import {
 
 export const attributeSettings = {
   a2s_verified: {
-    label: 'A2S Verified',
+    label: 'HILSC Verified',
     groups: ['service-checks'],
     order: [0],
   },

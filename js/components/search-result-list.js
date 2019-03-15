@@ -2,7 +2,7 @@ import { h } from 'preact'
 import SearchResultItem from './search-result-item'
 import { connect } from 'preact-redux'
 
-export const SearchResultList = ({ results, isLoading }) => {
+export const SearchResultList = ({ results, isLoading, isError }) => {
   if (isLoading) {
     return (<div>
       <div className="spinner-border" role="status">
@@ -12,7 +12,7 @@ export const SearchResultList = ({ results, isLoading }) => {
     </div>)
   }
 
-  return (<div className="list-group minimize">
+  return (<div className={`list-group minimize ${isError && 'error'}`}>
     {results.map((item) => (
       <SearchResultItem
         {...item}
@@ -25,4 +25,5 @@ export const SearchResultList = ({ results, isLoading }) => {
 export default connect((state) => ({
   results: state && state.get('filteredResults') || [],
   isLoading: state && state.get('isResultsLoading'),
+  isError: state && state.get('isError'),
 }))( SearchResultList )

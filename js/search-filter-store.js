@@ -18,6 +18,7 @@ export const initialState = fromJS({
   programsByAgency: {},
   isResultsLoading: true,
   isLoaded: false,
+  isError: false,
 })
 
 function hasServiceCheck(serviceChecks, checks) {
@@ -121,11 +122,15 @@ function filterReducer(currentState = initialState, action) {
     case 'RESULTS_LOADING_STATE':
       return currentState
               .set('isResultsLoading', action.isLoading)
+              .set('isError', action.isError || false)
       break
   }
 }
 
-const store = createStore(filterReducer)
+const store = createStore(
+  filterReducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()  
+)
 
 store.subscribe(() => {
   window.HEY = store.getState()

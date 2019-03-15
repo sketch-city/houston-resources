@@ -59,22 +59,38 @@ const Layout = ({ crumbs, children }) => {
       <main role="main">
         { children }
       </main>
-      <footer className="container">
-        <GoogleTranslateButton/>
-        <p className="mb-0">
-          <small>
-            The NeedHou Houston Social Services Database is a product of <a
-              href="https://www.houstonimmigration.org/"
-              target="_blank">
-                <abbr title="Houston Immigration Legal Services Collaborative">
-                  HILSC
-                </abbr>
-              </a> in partnership with <a
-              href="https://www.januaryadvisors.com/"
-              target="_blank">January Advisors</a>.  Only <abbr title="Access to Services Verified">A2S Verified</abbr> data has been accounted for by HILSC.
-          </small>
-        </p>
-        <p><small>Have a feature request?  Found a bug?  Contact us <a href="https://www.januaryadvisors.com/submit-feedback-or-report-a-bug" target="_blank">here</a>.</small></p>
+      <footer>
+        <div className="container">
+          <div className="row mb-2">
+            <div className="col">
+              <GoogleTranslateButton/>
+            </div>
+          </div>
+          <p className="mb-0">
+            <small>
+              The NeedHOU Houston Social Services Database is a product of <a
+                href="https://www.houstonimmigration.org/"
+                target="_blank">
+                  <abbr title="Houston Immigration Legal Services Collaborative">
+                    HILSC
+                  </abbr>
+                </a> in partnership with <a
+                href="https://www.januaryadvisors.com/"
+                target="_blank">January Advisors</a>.  Only HILSC Verified data has been accounted for by HILSC.
+            </small>
+          </p>
+          <p className="mb-0">
+            <small>
+              Have a feature request?  Found a bug?
+               Contact us <a href="https://www.januaryadvisors.com/submit-feedback-or-report-a-bug" target="_blank">here</a>.
+              <br/>Learn more about this tool in the <a
+                target="_blank"
+                href="https://needhou.developerhub.io/needhou/needhou-website">
+                NeedHOU User Manual
+              </a>.
+            </small>
+          </p>
+        </div>
       </footer>
     </div>
   )

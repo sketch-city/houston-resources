@@ -41,7 +41,7 @@ class SearchFilters extends Component {
   }
   shouldComponentUpdate(nextProps) {
     // do not re-render via diff:
-    const pickKeys = ['isLoaded']
+    const pickKeys = ['isLoaded', 'isResultsLoading']
     return !isEqual(pick(nextProps, pickKeys), pick(this.props, pickKeys))
     return false
   }
@@ -261,6 +261,7 @@ export default connect(
   (state) => ({
     filters: ((state && state.get('filters')) || {}),
     isLoaded: (state && state.get('isLoaded')) || false,
+    isResultsLoading: (state && state.get('isResultsLoading')) || false,
   }), {
     updateFilters: (content) => ({
       type: 'FILTERS_CHANGE',
