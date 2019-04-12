@@ -19,6 +19,14 @@ const Main = () => (
               name="service-checks"
               value="HILSC Verified"
             />
+            {
+              process.env.IS_DISASTER_MODE === 'true' &&
+              <input
+                type="hidden"
+                name="disaster-only"
+                value="true"
+                />
+            }
             <input
               className="form-control form-success"
               name="keywords"
