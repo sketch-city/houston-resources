@@ -82,6 +82,12 @@ class SearchFilters extends Component {
   <div className="card-body search-filters--filters">
     <a name="services">Services</a>
     <div className="form-group">
+      {process.env.IS_DISASTER_MODE === 'true' && <FormCheck
+        label = 'Disaster Only'
+        dataValue = 'true'
+        attribute = 'disaster-only'
+        checked = {(filters['disaster-only'] || '')}
+      />}
       {
         groupedSettings['service-checks']
           .map(item => (

@@ -74,7 +74,16 @@ function filterData({ filters, items }) {
       )
     )
 
-    return hasServices && isServiceType && hasLanguage && passesCompleteness && isAppointmentRequired && hasZip && isIncomeEligible && isImmigrationStatus && isImmigrationStatus
+    const isDisasterOnly = isEmpty(filters['disaster-only']) || isEmpty(item['disaster-only']) || (
+      item['disaster-only'] && (item['disaster-only']).find(( { attribute }) => (attribute === 'disaster-only')).item
+    )
+
+    return (
+      hasServices && isServiceType &&
+      hasLanguage && passesCompleteness && isAppointmentRequired &&
+      hasZip && isIncomeEligible && isImmigrationStatus && isImmigrationStatus &&
+      isDisasterOnly
+    )
   })
 }
 

@@ -255,6 +255,10 @@ export const attributeSettings = {
     label: ['Languages Spoken', 'Program Languages Spoken', 'Program'],
     order: [4, 7, 0]
   },
+  disaster_only: {
+    groups: ['disaster-only'],
+    label: 'Disaster Only',
+  }
 }
 
 function cleanStrings(string) {

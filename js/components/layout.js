@@ -3,6 +3,24 @@ import { h } from 'preact'
 import isEmpty from 'lodash/isEmpty'
 import { GoogleTranslateButton } from './google-translate'
 
+const DisasterBanner = () => {
+  if (process.env.IS_DISASTER_MODE !== 'true') {
+    return null
+  }
+
+  return (
+    <div class="alert alert-danger alert-dismissible fade show fixed-top" role="alert" style={{
+      // position: 'fixed',
+      // width: '100%',
+    }}>
+      <strong>Note:</strong> Find help for disaster relief quickly.  You can still find all resources by changing the filters.
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  )
+}
+
 const Crumbs = ({ crumbs }) => {
   if (!crumbs) {
     return null
@@ -57,6 +75,7 @@ const Layout = ({ crumbs, children }) => {
         <Crumbs crumbs={ crumbs }/>
       </header>
       <main role="main">
+        <DisasterBanner/>
         { children }
       </main>
       <footer>

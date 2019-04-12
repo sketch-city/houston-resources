@@ -76,7 +76,7 @@ const icons = { food, family, health, housing, education, legal, employment, mon
 const Category = ({ name, description }) => (
   <div className="col-lg-3 col-md-3 col-sm-6 col-6 py-3">
     <a className="card category"
-      href={`${buildURL('/search.html')}?service-checks=HILSC+Verified&service-type=${name.toLowerCase()}`}>
+      href={`${buildURL('/search.html')}?service-checks=HILSC+Verified&service-type=${name.toLowerCase()}${(process.env.IS_DISASTER_MODE === 'true' && '&disaster-only=true')}`}>
       <div className="card-body text-center">
         <h5>{name}</h5>
         {icons[name.toLowerCase()]}
