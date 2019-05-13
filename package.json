@@ -3,10 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "homepage": "https://needhou.org",
   "scripts": {
     "dev": "parcel *.html",
     "build": "parcel build *.html --public-url /",
-    "predeploy": "npm run build",
+    "predeploy": "npm run build; echo 'needhou.org' > dist/CNAME",
     "deploy": "gh-pages -d dist"
   },
   "author": "",
