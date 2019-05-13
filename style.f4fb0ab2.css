@@ -9511,8 +9511,16 @@ h3 {
     border-color: #dee2e6;
   }
 }
-body {
+.translated-ltr .fixed-top {
+  top: 39px;
+}
+
+.has-navbar {
   margin-top: 56px;
+}
+
+.has-navbar.has-crumbs {
+  margin-top: 112px;
 }
 
 .labelled-item--label {
@@ -9540,6 +9548,7 @@ body {
 
 .labelled-item {
   margin-bottom: 0.5em;
+  overflow-wrap: break-word;
 }
 
 .labelled-item--label {
@@ -9548,6 +9557,19 @@ body {
 
 #search-result-container .minimize .labelled-item[data-item=""].labelled-for-accepting-clients {
   display: block;
+}
+#search-result-container .list-group {
+  background: #fff;
+}
+#search-result-container .list-group::before {
+  content: "No matching programs.";
+  position: absolute;
+  top: 10px;
+  left: 36px;
+  z-index: -1;
+}
+#search-result-container .list-group.error::before {
+  content: "Results are missing.  This may be due to slow internet. Please reload.";
 }
 
 main {
@@ -9558,24 +9580,40 @@ main {
   margin-top: 20px;
 }
 
-#search-filters-container {
-  padding-top: 24px;
-}
 #search-filters-container .card {
   position: fixed;
-  max-width: calc(100% / 3 - 50px);
+  width: calc(100% / 3 - 50px);
 }
 #search-filters-container .card .search-filters--filters {
   overflow-y: auto;
   overflow-x: hidden;
-  max-height: calc(100vh - 240px);
+  max-height: calc(100vh - 300px);
 }
 #search-filters-container .form-group p:first-child {
   margin-bottom: 0;
 }
+#search-filters-container a[name] {
+  visibility: hidden;
+  font-size: 1px;
+  margin: 0;
+}
+#search-filters-container .filter-nav a {
+  color: #6c757d;
+  font-size: 0.8em;
+  padding-right: 0.4em;
+}
+
+.profile-tools p {
+  margin-bottom: 0.25em;
+  font-size: 0.9em;
+}
+
+.profile-tools + .list-group {
+  margin-top: 1.5em;
+}
 
 footer {
-  margin-top: 50px;
+  margin-top: 14px;
 }
 
 .category {
@@ -9621,7 +9659,6 @@ footer {
 }
 
 .navbar-brand {
-  font-weight: 800;
   font-family: "Roboto Slab", serif;
 }
 .navbar-brand::before {
@@ -9633,12 +9670,13 @@ footer {
   font-weight: 400;
 }
 
-#program-result-container {
-  padding-top: 24px;
-}
-
 label {
   cursor: pointer;
+}
+
+label,
+.labelled-item--label {
+  font-family: "Roboto Slab", serif;
 }
 
 .form-check label {
@@ -9649,7 +9687,6 @@ label {
 }
 
 #map {
-  height: 400px;
   width: 100%;
 }
 
@@ -9671,4 +9708,16 @@ label {
 #program-result-container [data-groups~=immigrant-accessibility]::before {
   content: "*";
   margin-left: -7px;
+}
+
+.program--schedule {
+  margin-bottom: 0.5em;
+}
+.program--schedule [data-attribute$=closed] {
+  color: #adb5bd;
+}
+
+footer {
+  background: #f8f9fa;
+  padding: 1em 0;
 }
