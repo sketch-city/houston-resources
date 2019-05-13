@@ -1,4 +1,4 @@
-export const googleMapsKey = 'AIzaSyDI2nDNT3z_DK6FUQhPyZ0z0ACaTXquTlw'
+export const googleMapsKey = 'AIzaSyBO6V94ciQYW0XqQnqDAPElmPFNXQFeZuc'
 
 export const searchURL = '//need-hou-api.herokuapp.com/api/programs'
 
