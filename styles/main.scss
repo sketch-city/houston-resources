@@ -1,9 +1,9 @@
 $font-family-sans-serif: 'Libre Franklin', sans-serif;
 $headings-font-family: 'Roboto Slab', serif;
 
-$hilsc-blue: #1571B6;
-$hilsc-gray: #4B4B4B;
-$hilsc-red:  #E8463A;
+$primary: #3D9970;
+$secondary: #BD3149;
+$success: $primary;
 
 @import "node_modules/bootstrap/scss/bootstrap";
 
@@ -87,6 +87,13 @@ $hilsc-red:  #E8463A;
 
 main {
   min-height: 100vh;
+
+  .container {
+
+    .card .card-name {
+      color: $secondary;
+    }
+  }
 }
 
 .list-group h4:first-child {
@@ -94,7 +101,7 @@ main {
 }
 
 #search-filters-container {
-  
+
 
   .card {
     position: fixed;
@@ -143,7 +150,7 @@ footer {
   background: $gray-100;
 
   svg {
-    fill: rgba($hilsc-red, 0.5);
+    fill: rgba($primary, 0.5);
     width: 35%;
     display: block;
     margin: 10px auto;
@@ -154,11 +161,11 @@ footer {
   &:focus {
     outline: none;
     text-decoration: none;
-    border-color: $blue; 
+    border-color: $blue;
     box-shadow: 0 0 0 $input-focus-width rgba($blue, .25);
 
     svg {
-      fill: rgba($hilsc-red, 1);
+      fill: rgba($primary, 1);
     }
   }
 
@@ -195,9 +202,9 @@ footer {
   font-family: $headings-font-family;
 
   &::before {
-    content: 'NeedHOU';
-    color: $hilsc-red;
-    border-right: 2px dotted $hilsc-red;
+    content: 'Houston Resources';
+    color: $primary;
+    border-right: 2px dotted $primary;
     padding-right: 8px;
     margin-right: 8px;
     font-weight: 400;
