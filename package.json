@@ -1,13 +1,13 @@
 {
-  "name": "need-hou-list",
+  "name": "houston-resources",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "homepage": "https://needhou.org",
+  "homepage": "https://sketch-city.github.io/houston-resources",
   "scripts": {
     "dev": "parcel *.html",
-    "build": "parcel build *.html --public-url /",
-    "predeploy": "npm run build; echo 'needhou.org' > dist/CNAME",
+    "build": "parcel build *.html --public-url /houston-resources/",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
   },
   "author": "",
