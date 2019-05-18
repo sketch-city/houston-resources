@@ -70,7 +70,7 @@ const Layout = ({ crumbs, children }) => {
     <div {...wrapperProps}>
       <header className="fixed-top">
         <nav className="navbar navbar-light bg-light">
-          <a className="navbar-brand" href={ buildURL(`${location.protocol}//${location.host}/index.html`) }>A database of resources for agencies working with immigrants in Greater Houston</a>
+          <a className="navbar-brand" href={ buildURL(`${location.protocol}//${location.host}/index.html`) }>A database of resources for agencies working with human trafficking victims in Greater Houston</a>
         </nav>
         <Crumbs crumbs={ crumbs }/>
       </header>
