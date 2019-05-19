@@ -31,6 +31,8 @@
     "preact": "^8.4.2",
     "preact-compat": "^3.18.4",
     "preact-redux": "^2.0.3",
+    "react": "^16.0.0",
+    "react-ga": "^2.5.7",
     "redux": "^4.0.1",
     "voca": "^1.4.0"
   }
