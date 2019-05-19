@@ -5,7 +5,7 @@
   "main": "index.js",
   "homepage": "https://sketch-city.github.io/houston-resources",
   "scripts": {
-    "dev": "parcel serve index.html --open",
+    "dev": "parcel serve *.html --open",
     "build": "parcel build *.html --public-url /houston-resources/",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"

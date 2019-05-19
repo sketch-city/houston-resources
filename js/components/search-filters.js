@@ -147,24 +147,6 @@ class SearchFilters extends Component {
       }
     />
     <FormGroupSelect
-      attribute = "immigration-status"
-      label = "Immigration Status"
-      placeholder = "Select an Immigration Status"
-      value = { filters['immigration-status'] }
-      options = {
-        ['U.S. Citizen', 'Other'].map(label => ({ value: label, label }))
-      }
-    />
-    <FormGroupSelect
-      attribute = "immigrant-accessibility"
-      label = "Immigrant Accessibility Profile"
-      placeholder = "Select Completeness"
-      value = { `${filters['immigrant-accessibility']}` }
-      options = {
-        ['0', '1', '2', '3', '4', '5'].map(completeness => ({ value: completeness, label: `${completeness}+` }))
-      }
-    />
-    <FormGroupSelect
       attribute = "languages"
       label = "Program/Service Languages"
       placeholder = "Select a Language"

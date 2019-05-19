@@ -170,7 +170,7 @@ const Program = (props) => (
           link: buildURL(`${location.protocol}//${location.host}/index.html`),
         }, {
           label: 'Search',
-          link: buildURL(`${location.protocol}//${location.host}/search.html?service-checks=HILSC+Verified`),
+          link: buildURL(`${location.protocol}//${location.host}/search.html`),
         }, {
           label: 'Program',
         }

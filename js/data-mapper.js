@@ -11,11 +11,6 @@ import {
 } from './constants'
 
 export const attributeSettings = {
-  a2s_verified: {
-    label: 'HILSC Verified',
-    groups: ['service-checks'],
-    order: [0],
-  },
   agency_id: {
     groups: ['identifiers'],
   },
@@ -41,7 +36,7 @@ export const attributeSettings = {
   ada: {
     label: 'ADA accessible?',
     groups: ['services-and-policies', 'service-checks'],
-    order: [2, 2]
+    order: [2, 1]
   },
   application_process: {
     groups: ['about'],
@@ -80,13 +75,13 @@ export const attributeSettings = {
   },
   accepting_clients: {
     groups: ['summary', 'listing', 'service-checks'],
-    order: [4, 3, 1],
+    order: [4, 3, 0],
     label: 'Accepting clients?',
   },
   transportation: {
     label: 'Provides Transportation',
     groups: ['services-provided', 'service-checks'],
-    order: [3, 3],
+    order: [3, 2],
   },
   latitude: {
     groups: ['location'],
@@ -201,7 +196,7 @@ export const attributeSettings = {
   },
   crisis_services_offered: {
     groups: ['services-offered', 'service-checks'],
-    order: [4, 4],
+    order: [4, 3],
   },
   document_languages: {
     groups: ['language-support', 'immigrant-accessibility'],

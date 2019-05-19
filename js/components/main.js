@@ -14,11 +14,6 @@ const Main = () => (
           className="form-inline"
           action={ buildURL(`${location.protocol}//${location.host}/search.html`) }>
           <div className="input-group input-group-lg">
-            <input
-              type="hidden"
-              name="service-checks"
-              value="HILSC Verified"
-            />
             {
               process.env.IS_DISASTER_MODE === 'true' &&
               <input
