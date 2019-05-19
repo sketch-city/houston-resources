@@ -140,10 +140,6 @@ main {
   margin-top: 1.5em;
 }
 
-footer {
-  margin-top: 14px;
-}
-
 .category {
 
   border-color: transparent;
@@ -264,9 +260,27 @@ label,
 
 footer {
   background: $gray-100;
+  margin-top: 14px;
   padding: 1em 0;
 }
 
 .hidden {
   display: none;
+}
+
+#analytics-container {
+  .chart-placeholder {
+    height: 200px;
+    width: 200px;
+    background-color: $gray-300;
+
+    &::before {
+      content: 'Coming Soon';
+      color: $gray-500;
+      display: flex;
+      justify-content: center;
+      height: 100%;
+      align-items: center;
+    }
+  }
 }
