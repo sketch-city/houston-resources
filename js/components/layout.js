@@ -108,6 +108,11 @@ const Layout = ({ crumbs, children }) => {
             </small>
           </p>
           <p className="mb-0">
+            <small>Want to see some&nbsp;
+              <a href={ buildURL(`${location.protocol}//${location.host}/analytics.html`) }>data</a>?
+            </small>
+          </p>
+          <p className="mb-0">
             <small>
               <div class="hidden">
                 Have a feature request?  Found a bug?
