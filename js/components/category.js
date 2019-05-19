@@ -81,9 +81,9 @@ const Category = ({ name, description }) => (
         category: 'Category Click',
         action: name
       })}
-      href={`${buildURL('/search.html')}?service-checks=HILSC+Verified&service-type=${name.toLowerCase()}${(process.env.IS_DISASTER_MODE === 'true' && '&disaster-only=true') || ''}`}>
+      href={`${buildURL('/search.html')}?service-type=${name.toLowerCase()}${(process.env.IS_DISASTER_MODE === 'true' && '&disaster-only=true') || ''}`}>
       <div className="card-body text-center">
-        <h5>{name}</h5>
+        <h5 className="card-name">{name}</h5>
         {icons[name.toLowerCase()]}
       </div>
     </a>

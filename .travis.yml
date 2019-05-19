@@ -1,0 +1,7 @@
+language: node_js
+node_js:
+- stable
+script: npm run deploy -- -x -r "https://$GH_TOKEN@github.com/sketch-city/houston-resources.git"
+env:
+  global:
+  - COMMIT_AUTHOR_EMAIL: "hello@sketchcity.org"

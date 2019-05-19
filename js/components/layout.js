@@ -70,7 +70,7 @@ const Layout = ({ crumbs, children }) => {
     <div {...wrapperProps}>
       <header className="fixed-top">
         <nav className="navbar navbar-light bg-light">
-          <a className="navbar-brand" href={ buildURL(`${location.protocol}//${location.host}/index.html`) }>A database of resources for agencies working with immigrants in Greater Houston</a>
+          <a className="navbar-brand" href={ buildURL(`${location.protocol}//${location.host}/index.html`) }>A database of resources for agencies working with human trafficking victims in Greater Houston</a>
         </nav>
         <Crumbs crumbs={ crumbs }/>
       </header>
@@ -87,22 +87,33 @@ const Layout = ({ crumbs, children }) => {
           </div>
           <p className="mb-0">
             <small>
-              The NeedHOU Houston Social Services Database is a product of <a
+              This site is a fork of&nbsp;
+              <a href="https://www.needhou.org/"
+                 target="_blank">
+                <abbr title="NeedHOU">
+                  NeedHOU
+                </abbr>
+              </a>,&nbsp;
+              a project built and maintained by&nbsp;
+              <a href="https://www.januaryadvisors.com/"
+                 target="_blank">January Advisors</a>&nbsp;
+              in collaboration with&nbsp;
+              <a
                 href="https://www.houstonimmigration.org/"
                 target="_blank">
-                  <abbr title="Houston Immigration Legal Services Collaborative">
-                    HILSC
-                  </abbr>
-                </a> in partnership with <a
-                href="https://www.januaryadvisors.com/"
-                target="_blank">January Advisors</a>.  Only HILSC Verified data has been accounted for by HILSC.
+                <abbr title="Houston Immigration Legal Services Collaborative">
+                  HILSC
+                </abbr>
+              </a>.
             </small>
           </p>
           <p className="mb-0">
             <small>
-              Have a feature request?  Found a bug?
-               Contact us <a href="https://www.januaryadvisors.com/submit-feedback-or-report-a-bug" target="_blank">here</a>.
-              <br/>Learn more about this tool in the <a
+              <div class="hidden">
+                Have a feature request?  Found a bug?
+                Contact us <a href="https://www.januaryadvisors.com/submit-feedback-or-report-a-bug" target="_blank">here</a>.
+              </div>
+                Learn more about this tool in the <a
                 target="_blank"
                 href="https://needhou.developerhub.io/needhou/needhou-website">
                 NeedHOU User Manual
