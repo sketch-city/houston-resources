@@ -16,6 +16,8 @@ import axios from 'axios'
 import { handleDataFromAPIToView } from './data-mapper'
 import searchFilterStore, { initialState } from './search-filter-store'
 
+const GOOGLE_ANALYTICS_ID = 'UA-45602300-1'
+
 function countGroupCompleteness(data, groupName = 'immigrant-accessibility') {
   return data.filter(({item}) => !(isEmpty(item))).length
 }
@@ -97,6 +99,7 @@ function hasValuesAsObject(data) {
 }
 
 export {
+  GOOGLE_ANALYTICS_ID,
   countGroupCompleteness,
   buildURL,
   getDataFromForm,

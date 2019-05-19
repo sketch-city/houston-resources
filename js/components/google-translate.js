@@ -1,4 +1,5 @@
 import { h, Component } from 'preact'
+import ReactGA from 'react-ga';
 
 export class GoogleTranslateButton extends Component {
   shouldComponentUpdate() {
@@ -22,6 +23,10 @@ export class GoogleTranslateButton extends Component {
       <script type='text/javascript' src='//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit' />
       <span
         id="google_translate_element"
+        onChange={ReactGA.event({
+          category: 'Language',
+          action: 'Language Change'
+        })}
         ref={translateEl => this.translateEl = translateEl}/>
     </span>)
   }

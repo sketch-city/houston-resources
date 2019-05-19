@@ -1,8 +1,12 @@
 import { h } from 'preact'
+import ReactGA from 'react-ga'
 import Category from './category'
 import Layout from './layout'
 import { categories } from '../constants'
-import { buildURL } from '../utils'
+import { GOOGLE_ANALYTICS_ID, buildURL } from '../utils'
+
+ReactGA.initialize(GOOGLE_ANALYTICS_ID);
+ReactGA.pageview(window.location.pathname + window.location.search);
 
 const Main = () => (
   <Layout>
