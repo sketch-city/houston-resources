@@ -109,7 +109,7 @@ const Layout = ({ crumbs, children }) => {
           </p>
           <p className="mb-0">
             <small>Want to see some&nbsp;
-              <a href={ buildURL(`${location.protocol}//${location.host}/analytics.html`) }>data</a>?
+              <a href={ buildURL(`${location.protocol}//${location.host}/houston-resources/analytics.html`) }>data</a>?
             </small>
           </p>
           <p className="mb-0">
